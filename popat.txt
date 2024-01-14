@@ -1,0 +1,3170 @@
+Can be Empty
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character after t
+
+        while (t-- > 0) {
+            String s = scanner.nextLine();
+            int a = 0, b = 0, c = 0;
+
+            for (int p = 0; p < s.length(); p++) {
+                if (s.charAt(p) == 'A') {
+                    a++;
+                } else if (s.charAt(p) == 'B') {
+                    b++;
+                } else if (s.charAt(p) == 'C') {
+                    c++;
+                }
+            }
+
+            System.out.println(b == a + c ? "YES" : "NO");
+        }
+    }
+}
+
+
+
+-----MAX Grupy
+
+
+import java.util.Scanner;
+
+class Solution {
+    public static int maxWhenGrumpy(int[] cust, int[] g, int k) {
+        int maxi = 0, i = 0, sum = 0, j = 0, n = cust.length;
+        while (i < k) {
+            if (g[i] == 1)
+                sum += cust[i];
+            i++;
+        }
+        maxi = Math.max(maxi, sum);
+
+        while (i < n) {
+            if (g[j] == 1)
+                sum -= cust[j];
+            if (g[i] == 1)
+                sum += cust[i];
+            maxi = Math.max(maxi, sum);
+            i++;
+            j++;
+        }
+        return maxi;
+    }
+
+    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
+        int max = 0, n = customers.length;
+        max = maxWhenGrumpy(customers, grumpy, minutes);
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (grumpy[i] == 0)
+                sum += customers[i];
+        }
+        return max + sum;
+    }
+}
+
+
+
+
+Owner
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Solution solution = new Solution();
+        int n = scanner.nextInt();
+
+        int[] customers = new int[n];
+        int[] grumpy = new int[n];
+         for (int i = 0; i < n; i++) {
+            customers[i] = scanner.nextInt();
+        }
+
+         for (int i = 0; i < n; i++) {
+            grumpy[i] = scanner.nextInt();
+        }
+
+       int minutes = scanner.nextInt();
+
+        int maxSatisfiedCustomers = solution.maxSatisfied(customers, grumpy, 		minutes);
+        System.out.println(maxSatisfiedCustomers);
+    }
+}
+
+
+
+Equilibrium Index of an Array
+
+
+
+
+def find_equilibrium_index(arr):
+    n = len(arr)
+
+    # Calculate the total sum of the array
+    total_sum = sum(arr)
+
+    left_sum = 0
+
+    for i in range(n):
+        # Calculate the right sum as the total sum minus the left sum and the current element
+        right_sum = total_sum - left_sum - arr[i]
+
+        if left_sum == right_sum:
+            return i  # Found an equilibrium index
+
+        left_sum += arr[i]
+
+    return -1  # No equilibrium index found
+
+# Input
+T = int(input())
+for _ in range(T):
+    N = int(input())
+    arr = list(map(int, input().split()))
+
+    # Find and print the equilibrium index
+    equilibrium_index = find_equilibrium_index(arr)
+    print(equilibrium_index)
+
+
+
+
+
+
+32
+Find the Element that Appears Once
+
+
+n=int(input())
+li=list(map(int, input().split()))
+ans=-1
+for i in li:
+    if li.count(i)==1:
+        ans=i
+        break;
+print(ans)
+
+
+
+
+
+
+Equilibrium Index of an Array
+
+
+
+def find_equilibrium_index(arr):
+    n = len(arr)
+    
+    if n == 0:
+        return -1
+    
+    left_sum = [0] * n
+    right_sum = [0] * n
+    
+    # Calculate cumulative sums from the left
+    left_sum[0] = arr[0]
+    for i in range(1, n):
+        left_sum[i] = left_sum[i - 1] + arr[i]
+    
+    # Calculate cumulative sums from the right
+    right_sum[n - 1] = arr[n - 1]
+    for i in range(n - 2, -1, -1):
+        right_sum[i] = right_sum[i + 1] + arr[i]
+    
+    # Find the equilibrium point
+    for i in range(n):
+        if left_sum[i] == right_sum[i]:
+            return i
+    
+    return -1
+
+# Read input and process test cases
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    arr = list(map(int, input().split()))
+    result = find_equilibrium_index(arr)
+    print(result)
+
+
+
+
+Set Kth Bit
+
+
+import java.util.*;
+public class EquilibriumIndex {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in); 
+      int n=sc.nextInt();
+      int k=sc.nextInt();
+      int set=1<<k;
+      System.out.println(n|set);
+    }
+}
+
+
+
+
+Switchesdef count_switches_on(n):
+    switches = [0] * n
+    
+    for i in range(1, n + 1):
+        j = 1
+        while j * i <= n:
+            switches[j * i - 1] ^= 1
+            j += 1
+    
+    count_on = sum(switches)
+    
+    return count_on
+
+n = int(input())
+
+result = count_switches_on(n)
+print(result)
+
+
+
+
+Save Village
+
+
+
+import java.util.*;
+
+public class SaveVillage {
+    public static int sumOfHeights(int n, int[] arr) {
+        final int MOD = 1000000001;
+        Stack<Integer> st=new Stack<>();
+        int sum=0;
+        st.push(arr[n-1]);
+        for(int i=n-2;i>=0;i--){
+            while(!st.isEmpty() && arr[i]>=st.peek()){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                sum+=0;
+            }
+            else
+                sum+=st.peek();
+            st.push(arr[i]);
+        }
+        return sum;
+       
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] heights = new int[n];
+        for (int i = 0; i < n; i++) {
+            heights[i] = scanner.nextInt();
+        }
+
+        int result = sumOfHeights(n, heights);
+        System.out.println(result);
+    }
+}
+
+
+
+Building Jump
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)arr[i]=sc.nextInt();
+        int c=0;
+        int max=-1;
+        for(int i=0;i<n-1;i++){
+            if(arr[i+1]>arr[i]){
+                c++;
+                max=Math.max(max, c);
+            }
+            else{
+                c=0;
+            }
+        }
+        System.out.println(max);
+    }
+}
+
+
+Count Set Bits
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        while(n-->0){
+            int m=sc.nextInt();
+            int c=0;
+            while(m!=0){
+                if((m & 1)==1)
+                    c++;
+                m=m>>1;
+            }
+            System.out.println(c);
+        }
+    }
+}
+
+
+Reverse words
+
+
+def reverse_words(input_string):
+    words = input_string.split()
+  
+    reversed_words = words[::-1]
+ 
+    reversed_string = ' '.join(reversed_words)
+    
+    return reversed_string
+
+input_string = input()
+result = reverse_words(input_string)
+print(result)
+
+
+
+
+
+
+Check Prefix Match
+
+
+def count_matching_prefixes(arr, s, k):
+    count = 0
+    s_prefix = s[:k] 
+
+    for word in arr:
+        if len(word) >= k and word[:k] == s_prefix:
+            count += 1
+
+    return count
+
+n = int(input())
+arr = input().split()
+k = int(input())
+s = input()
+
+result = count_matching_prefixes(arr, s, k)
+print(result)
+
+
+
+
+
+
+
+
+Almost Lucky...
+
+
+
+def is_lucky_number(n):
+    while n > 0:
+        digit = n % 10
+        if digit != 4 and digit != 7:
+            return False
+        n //= 10
+    return True
+
+def count_lucky_digits(n):
+    count = 0
+    while n > 0:
+        digit = n % 10
+        if digit == 4 or digit == 7:
+            count += 1
+        n //= 10
+    return count
+
+def is_almost_lucky(n):
+    lucky_count = count_lucky_digits(n)
+    return is_lucky_number(lucky_count)
+
+# Input
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    if is_almost_lucky(n):
+        print("YES")
+    else:
+        print("NO")
+
+
+
+
+Strooong Prime 
+
+
+import java.util.*;
+public class GFG {
+	static boolean isPrime(int n)
+	{
+	
+		if (n <= 1)
+			return false;
+		if (n <= 3)
+			return true;
+
+		if (n % 2 == 0 || n % 3 == 0)
+			return false;
+
+		for (int i = 5; i * i <= n; i = i + 6)
+			if (n % i == 0 || n % (i + 2) == 0)
+				return false;
+
+		return true;
+	}
+    static boolean isStrongPrime(int n)
+	{
+		
+		if (!isPrime(n) || n == 2)
+			return false;
+
+		int previous_prime = n - 1;
+		int next_prime = n + 1;
+
+		while (!isPrime(next_prime))
+			next_prime++;
+		while (!isPrime(previous_prime))
+			previous_prime--;
+
+		int mean = (previous_prime + next_prime) / 2;
+
+		// If n is a strong prime
+		if (n > mean)
+			return true;
+		else
+			return false;
+	}
+
+	public static void main(String args[])
+	{
+
+		 Scanner sc=new Scanner(System.in);
+         int n=sc.nextInt();
+
+		if (isStrongPrime(n))
+			System.out.println("YES");
+
+		else
+			System.out.println("NO");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int f1 = -5, f2 = 12;
+        
+        for (int i = n; i <= m; i++) {
+            if (isPrime(i)) {
+                f2 = f1;
+                f1 = i;
+                if (Math.abs(f1 - f2) == 2) {
+                    System.out.println(f2 + " " + f2);
+                }
+            }
+        }
+    }
+
+    public static boolean isPrime(int n) {
+        if (n < 2)
+            return false;
+        for (int i = 2;i<=Math.sqrt(n); i++) {
+            if (n % i == 0)
+                return false;
+        }
+        return true;
+    }
+}
+
+
+Current Bill...
+
+
+
+import java.util.Scanner;
+
+public class ElectricityBillCalculator {
+    public static void main(String[] args) {
+    
+        Scanner scanner = new Scanner(System.in);
+
+       
+        int unitsConsumed = scanner.nextInt();
+
+        // Close the scanner
+        scanner.close();
+
+        // Define unit charges
+        double unitCharge = 0.0;
+
+        // Calculate unit charges based on the given criteria
+        if (unitsConsumed <= 199) {
+            unitCharge = 1.20;
+        } else if (unitsConsumed >= 200 && unitsConsumed < 400) {
+            unitCharge = 1.50;
+        } else if (unitsConsumed >= 400 && unitsConsumed < 600) {
+            unitCharge = 1.80;
+        } else {
+            unitCharge = 2.00;
+        }
+
+        // Calculate the basic electricity bill amount
+        double electricityBill = unitsConsumed * unitCharge;
+
+        // Check if the bill exceeds Rs. 400
+        double surcharge = (electricityBill > 400) ? 0.15 * electricityBill : 100;
+
+        // Calculate the total bill amount
+        double totalBill = electricityBill + surcharge;
+
+        // Print the total amount to be paid by the customer
+        System.out.println(String.format("%.2f", totalBill));
+    }
+}
+
+
+
+
+
+Max No of Edges
+
+
+
+def max_edges_in_dag(N, K, L):
+    max_edges = (N * (N - 1) // 2) - (K * (K - 1) // 2) - (L * (L - 1) // 2)
+    return max_edges
+
+# Input
+for _ in range(int(input())):
+    N, K, L = map(int, input().split())
+
+    result = max_edges_in_dag(N, K, L)
+    print(result)
+
+
+
+
+
+
+
+
+
+---Distinct Elements in Two Arrays
+
+
+def find_distinct_elements(arr1, arr2):
+    # Convert the arrays to sets to find distinct elements
+    set1 = set(arr1)
+    set2 = set(arr2)
+    
+    # Find elements in Arr1 that are not in Arr2
+    ans1 = sorted(list(set1 - set2))
+    
+    # Find elements in Arr2 that are not in Arr1
+    ans2 = sorted(list(set2 - set1))
+    
+    return ans1, ans2
+
+# Input
+N = int(input())
+Arr1 = list(map(int, input().split()))
+Arr2 = list(map(int, input().split()))
+
+# Find distinct elements in each array
+Ans1, Ans2 = find_distinct_elements(Arr1, Arr2)
+
+# Output
+print(" ".join(map(str, Ans1)))
+print(" ".join(map(str, Ans2)))
+
+
+
+
+
+Find The Number
+
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        Arrays.sort(arr);
+        System.out.print(arr[0]);
+
+    }
+}
+
+
+
+
+
+
+
+---Substrings of Size Three
+
+s = input()
+count = 0
+n = len(s)
+for i in range(n - 2):
+    if len(set(s[i:i+3])) == 3:
+        count += 1
+print(count)
+
+
+
+
+
+--------Equilibrium Point
+
+
+def find_equilibrium_point(arr, n):
+    total_sum = sum(arr)
+    left_sum = 0
+
+    for i in range(n):
+        total_sum -= arr[i]
+        if left_sum == total_sum:
+            return i + 1
+        left_sum += arr[i]
+
+    return -1
+n = int(input())
+arr = list(map(int, input().split()))
+equilibrium_point = find_equilibrium_point(arr, n)
+
+
+print(equilibrium_point)
+
+
+
+
+
+
+----------Long Pressed Keys
+
+def is_long_pressed_name(original, typed):
+    i = 0  
+    j = 0  
+
+    while j < len(typed):
+        if i < len(original) and original[i] == typed[j]:
+            i += 1
+            j += 1
+        elif j == 0 or typed[j] != typed[j - 1]:
+            return False
+        else:
+            j += 1
+
+    return i == len(original)
+
+# Input
+original = input()
+typed = input()
+result = is_long_pressed_name(original, typed)
+if(result):
+    print('true')
+else:
+    print('false')
+
+
+
+
+
+
+
+----------Row with max 1s
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int n = scanner.nextInt(); // Number of rows and columns
+        int[][] grid = new int[n][n]; // Initialize the grid
+        
+        // Input the grid values
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                grid[i][j] = scanner.nextInt();
+            }
+        }
+        
+        int maxOnes = 0;
+        int maxRowIndex = -1;
+        
+        for (int i = 0; i < n; i++) {
+            int onesCount = 0;
+            for (int j = 0; j < n; j++) {
+                onesCount += grid[i][j];
+            }
+            
+            if (onesCount > maxOnes) {
+                maxOnes = onesCount;
+                maxRowIndex = i;
+            }
+        }
+        
+        System.out.println(maxRowIndex); // Print the row index with maximum 1's
+    }
+}
+
+
+
+
+-----Sorting an Array with Odd and Even Numbers
+
+
+n=int(input())
+li=list(map(int, input().split()))
+odd=[]
+even=[]
+for i in li:
+    if i%2==0:
+        even.append(i)
+    else:
+        odd.append(i)
+
+j=0
+k=0
+for i in range(n):
+    if(i%2==0 and j<len(even)):
+        print(even[j], end=" ")
+        j=j+1
+    elif k<len(odd):
+        print(odd[k], end=" ")
+        k=k+1
+
+
+
+
+----Miss And Repeat
+
+
+n=int(input())
+li=list(map(int, input().split()))
+find=0
+for i in li:
+    if(li.count(i)==2):
+        find=i
+        break
+s=sum(li)
+s=s-find;
+print(find,end=" ")
+print(n*(n+1)//2-s)
+
+
+
+
+
+---Union Of Two Sorted Arrays
+
+
+
+n = int(input())
+m = int(input())
+arr1 = list(map(int, input().split()))
+arr2 = list(map(int, input().split()))
+union_set = set(arr1).union(set(arr2))
+
+result = sorted(union_set)
+print(*result)
+
+
+
+
+
+
+----Online Inventory Management System
+
+
+n=int(input())
+k=int(input())
+f=0
+li=list(map(int, input().split()))
+for i in li:
+    for j in li:
+        if(i==j):
+            continue
+        if(i*j==k):
+            print(1)
+            f=1
+            break
+    if(f==1):
+        break
+if(f==0):
+    print(-1)
+
+
+
+
+
+-----Move all Zeroes to End of Array
+
+
+n=int(input())
+li=list(map(int, input().split()))
+temp=n*[0]
+j=0
+for i in li:
+    if( i !=0):
+        temp[j]=i
+        j=j+1
+print(*temp)
+
+
+
+
+---Delete Middle Element Of Stack
+
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        Stack<Integer> st=new Stack<>();
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        for(int i=0;i<n;i++){
+            if(n%2==0 && i==n/2-1)continue;
+            if(n%2!=0 && i==n/2)continue;
+            System.out.print(arr[i]+" ");
+        }
+        
+
+    }
+}
+
+
+
+
+---Immediate Smaller Element
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        int[] updatedArr = immediateSmallerElement(arr, n);
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(updatedArr[i] + " ");
+        }
+    }
+
+    public static int[] immediateSmallerElement(int[] arr, int n) {
+        int[] result = new int[n];
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i + 1] < arr[i]) {
+                result[i] = arr[i + 1];
+            } else {
+                result[i] = -1;
+            }
+        }
+        result[n - 1] = -1; 
+        return result;
+    }
+}
+
+
+
+----Minimum Digit Elements
+
+n=int(input())
+li=list(map(int, input().split()))
+ans=1000
+for i in li:
+    if(len(str(i))<ans):
+        ans=len(str(i))
+count = 0
+for num in li:
+    if len(str(num)) == ans:
+        count += 1
+print(count)
+
+
+
+
+------Missing Characters
+
+
+def find_missing_chars(sentence):
+    char_set = set(sentence.lower())
+    missing_chars = ""
+    for char in 'abcdefghijklmnopqrstuvwxyz':
+        if char not in char_set:
+            missing_chars += char
+
+    return missing_chars
+sentence = input()
+missing_chars = find_missing_chars(sentence)
+if missing_chars:
+    print(missing_chars)
+else:
+    print("0")
+
+
+
+
+
+-----First Duplicate
+
+
+def find_first_duplicate(arr):
+    seen = set()
+    for num in arr:
+        if num in seen:
+            return num
+        seen.add(num)
+    return -1
+
+n = int(input())
+arr = list(map(int, input().split()))
+result = find_first_duplicate(arr)
+print(result)
+
+
+
+-----No Repeated Digit Number Count
+
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n1 = scanner.nextInt();
+        int n2 = scanner.nextInt();
+        int result = countNumbersWithNoRepeatedDigits(n1, n2);
+        System.out.println(result);
+    }
+
+    public static int countNumbersWithNoRepeatedDigits(int n1, int n2) {
+        int count = 0;
+        for (int num = n1; num <= n2; num++) {
+            if (!hasRepeatedDigits(num)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static boolean hasRepeatedDigits(int num) {
+        Set<Integer> digits = new HashSet<>();
+        while (num > 0) {
+            int digit = num % 10;
+            if (digits.contains(digit)) {
+                return true;
+            }
+            digits.add(digit);
+            num /= 10;
+        }
+        return false;
+    }
+}
+
+
+
+
+
+------Reverse Bits
+
+
+import java.util.Scanner;
+
+class Solution {
+    static long reversedBits(long X) {
+        int temp = Integer.reverse((int) X);
+        String s = Integer.toBinaryString(temp);
+        long ans = Long.parseLong(s, 2);
+        return ans;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input
+        Scanner scanner = new Scanner(System.in);
+
+        // Read the 32-bit integer
+        long x = scanner.nextLong();
+
+        // Reverse the bits and print the result
+        long reversed_x = Solution.reversedBits(x);
+        System.out.println(reversed_x);
+
+        // Close the scanner
+        scanner.close();
+    }
+}
+
+
+
+
+
+----Math Teacher's Dilemma
+
+
+def fun(a, b):
+    if a==0:
+        return b
+    return fun(b%a, a)
+
+a, b=map(int, input().split())
+print(int(a/fun(a, b)*b), end=" ")
+print(fun(a, b))
+
+
+
+
+
+
+
+------String Decode
+
+s=input()
+s1=set(s)
+if 2*len(s1)>len(s):
+    print("No")
+else:
+    print("Yes")
+
+
+
+---Sequence Series
+
+n=int(input())
+li=list(map(int, input().split()))
+a=2
+c=0
+b=1
+for i in range(2, n):
+    temp=a+b
+    if(li[i]!=temp):
+        c +=1
+    a=b
+    b=temp
+print(c)
+
+
+
+
+
+
+-----------Make Even Sum
+
+def is_possible_to_split(array):
+    even_count = 0
+    odd_count = 0
+    
+    for num in array:
+        if num % 2 == 0:
+            even_count += 1
+        else:
+            odd_count += 1
+    
+   
+    if odd_count % 2 != 0:
+        return 0
+    else:
+        return 1
+
+N = int(input())
+array = list(map(int, input().split()))
+result = is_possible_to_split(array)
+print(result)
+
+
+
+-----------Number of Pairs Equals to Given Target String
+
+n=int(input())
+li=list(map(str, input().split()))
+tar=input()
+c=0
+for i in li:
+    for j in li:
+        if(i+j==tar):
+            c +=1
+print(c)
+
+
+
+
+---Right Rotate an Array `k` Times
+
+
+def right_rotate_array(arr, k):
+    n = len(arr)
+    k = k % n
+    rotated_arr = arr[-k:] + arr[:-k]
+    
+    return rotated_arr
+n, k = map(int, input().split())
+array = list(map(int, input().split()))
+rotated_array = right_rotate_array(array, k)
+for num in rotated_array:
+    print(num, end=" ")
+
+
+
+
+-----Product-1
+
+def product_combinations(N):
+    count = 0
+    for a in range(1, N):
+        if N % a == 0:
+            b = N // a
+            if b > a:
+                count += 1
+    return count
+    
+N = int(input())
+result = product_combinations(N)
+print(result)
+
+
+
+
+Chance of Planting Flower
+
+
+Program Description :
+You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
+
+Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
+
+
+def can_place_flowers(flowerbed, n):
+    count = 0
+    i = 0
+    while i < len(flowerbed):
+        if flowerbed[i] == 0:
+            if i == 0 or flowerbed[i - 1] == 0:
+                if i == len(flowerbed) - 1 or flowerbed[i + 1] == 0:
+                    flowerbed[i] = 1
+                    count += 1
+        i += 1
+    return count >= n
+
+# Input
+flowerbed = list(map(int, input().split()))
+n = int(input())
+
+# Check if it's possible to plant n new flowers
+result = can_place_flowers(flowerbed, n)
+if(result):
+    print('true')
+else:
+    print('false')
+
+
+Arrange The Cows
+
+
+def solve(n, k, stalls):
+    stalls.sort()  # Sort the stalls in ascending order
+    low, high = 0, stalls[-1] - stalls[0]
+    
+    while low < high:
+        mid = (low + high + 1) // 2  # Binary search for the minimum distance
+        
+        # Check if it's possible to place k cows with a minimum distance of mid
+        count = 1
+        current_stall = stalls[0]
+        
+        for i in range(1, n):
+            if stalls[i] - current_stall >= mid:
+                count += 1
+                current_stall = stalls[i]
+        
+        if count >= k:
+            low = mid
+        else:
+            high = mid - 1
+    
+    return low
+
+# Input
+n, k = map(int, input().split())
+stalls = list(map(int, input().split()))
+
+# Find the largest possible minimum distance between cows
+result = solve(n, k, stalls)
+print(result)
+
+
+
+---Minimum Number
+
+
+def find_minimum_number_with_distinct_digits(S):
+    if S == 0:
+        return 0
+
+    digits = []
+
+    for digit in range(9, 0, -1):
+        if S >= digit:
+            digits.append(digit)
+            S -= digit
+    if S > 0:
+        digits[-1] += S
+    
+
+    min_number = int(''.join(map(str, digits[::-1])))
+    
+    return min_number
+
+S = int(input())
+result = find_minimum_number_with_distinct_digits(S)
+print(result)
+
+
+
+---Subarrays with Target Sum
+
+
+import java.util.ArrayList;
+import java.util.*;
+
+public class SubarraysWithTargetSum {
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       int n=sc.nextInt();
+       int[] arr=new int[n];
+
+       for(int i=0;i<n;i++){
+        arr[i]=sc.nextInt();
+       }
+       int c=0;
+       int k=sc.nextInt();
+       for(int i=0;i<n;i++){
+        int sum=0;
+        
+        for(int j=i;j<n;j++){
+            sum+=arr[j];
+            if(sum==k){
+                c++;
+            }
+        }
+       }
+       System.out.println(c);
+    }
+}
+
+
+
+
+------Online Shopping Cart
+
+def find_equilibrium_index(cart):
+    n = len(cart)
+    
+    total_cost = sum(cart)
+    
+    left_sum = 0
+    
+    for i in range(n):
+        right_sum = total_cost - left_sum - cart[i]
+        if left_sum == right_sum:
+            return i
+        left_sum += cart[i]
+    return -1
+T = int(input()) 
+
+for _ in range(T):
+    N = int(input())  
+    cart = list(map(int, input().split()))  
+
+    result = find_equilibrium_index(cart)
+    print(result)
+
+
+
+-----slide the bar
+
+
+def containsNearbyDuplicate(nums, k):
+    num_indices = {} 
+    
+    for i, num in enumerate(nums):
+        if num in num_indices and i - num_indices[num] <= k:
+            return "true"
+        num_indices[num] = i  
+    return "false"
+
+N = int(input())
+nums = list(map(int, input().split()))
+k = int(input())
+result = containsNearbyDuplicate(nums, k)
+print(result)
+
+
+
+
+
+----Detecting Super Numbers
+
+
+import math
+
+def prime_factors(n):
+    factors = []
+    
+    while n % 2 == 0:
+        factors.append(2)
+        n //= 2
+    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        while n % i == 0:
+            factors.append(i)
+            n //= i
+    if n > 2:
+        factors.append(n)
+    
+    return factors
+
+def digit_sum(number):
+    return sum(int(digit) for digit in str(number))
+
+def is_super_number(n):
+    factors = prime_factors(n)
+
+    sum_digits = digit_sum(n)
+    sum_factors_digits = sum(digit_sum(factor) for factor in factors)
+    
+    return sum_digits == sum_factors_digits
+
+N = int(input())
+
+result = is_super_number(N)
+print(int(result))
+
+
+----Word Game
+
+import java.util.Scanner;
+
+public class DivideString {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input
+        String s = scanner.nextLine();
+        int p = scanner.nextInt();
+
+        // Call the function
+        divideString(s, p);
+    }
+
+    // Function to divide a string into P equal parts
+    public static void divideString(String s, int p) {
+        int length = s.length();
+        if (length % p != 0) {
+            System.out.println("Invalid String");
+        } else {
+            int partSize = length / p;
+            for (int i = 0; i < length; i += partSize) {
+                String part = s.substring(i, i + partSize);
+                System.out.print(part+" ");
+            }
+        }
+    }
+}
+
+
+
+----Solve The Equation
+
+for k in range(int(input())):
+    n=int(input())
+    ans=-1
+    for i in range(n):
+        if ((i*i+i+1)==n):
+            ans=i
+            break
+    print(ans)
+
+
+
+-----Discount on Candies
+
+n=int(input())
+li=list(map(int, input().split()))
+li.sort()
+ans=0
+n=n-1
+while n>=0:
+    ans+=li[n]
+    n=n-1
+    if(n>=0):
+        ans+=li[n]
+    n=n-2
+print(ans)
+
+
+
+
+-----String Magic 2
+
+
+def calculate_sum_from_string(s):
+    total_sum = 0
+    current_number = 0
+    is_negative = False
+
+    for char in s:
+        if char.isdigit():
+            current_number = current_number * 10 + int(char)
+        elif char == '-' and current_number == 0:
+            is_negative = True
+        else:
+            if is_negative:
+                total_sum -= current_number
+                is_negative = False
+            else:
+                total_sum += current_number
+            current_number = 0
+
+    if is_negative:
+        total_sum -= current_number
+    else:
+        total_sum += current_number
+
+    return total_sum
+
+
+s = input()
+result = calculate_sum_from_string(s)
+print(result)
+
+
+-----Array Fitting
+
+n=int(input())
+li1=list(map(int, input().split()))
+li2=list(map(int, input().split()))
+li1.sort()
+li2.sort()
+ans=0
+ans="YES"
+for i in range(n):
+    if(li1[i]>li2[i]):
+        ans="NO"
+        break
+print(ans)
+
+
+
+
+
+
+
+----First Unique Character
+
+s=input()
+ans='-1'
+for i in s:
+    if s.count(i)==1:
+        ans=i
+        break
+print(ans)
+
+
+
+
+
+-----Check Validity
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine(); // Consume the newline character
+        
+        while (t-- > 0) {
+            String s = sc.nextLine();
+            Stack<Character> st = new Stack<>();
+            boolean ans = true;
+            
+            for (char ch : s.toCharArray()) {
+                if (ch == '(') st.push(')');
+                else if (ch == '{') st.push('}');
+                else if (ch == '[') st.push(']');
+                else {
+                    if (st.isEmpty() || ch != st.pop()) {
+                        ans = false;
+                        break;
+                    }
+                }
+            }
+            
+            if (ans && st.isEmpty()) System.out.println("True");
+            else System.out.println("False");
+        }
+    }
+}
+
+
+
+---------Kth Prime Factor
+
+
+// JAVA Program to print kth prime factor
+import java.util.*;
+import java.math.*;
+
+public class GFG{
+
+	static int kPrimeFactor(int n, int k)
+	{
+		
+		while (n % 2 == 0)
+		{
+			k--;
+			n = n / 2;
+			if (k == 0)
+			return 2;
+		}
+	
+		for (int i = 3; i <= Math.sqrt(n); i = i + 2)
+		{
+			
+			while (n % i == 0)
+			{
+				if (k == 1)
+				return i;
+	
+				k--;
+				n = n / i;
+			}
+		}
+	
+		if (n > 2 && k == 1)
+			return n;
+	
+		return -1;
+	}
+	
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+
+		int n = sc.nextInt(); 
+        int k = sc.nextInt();
+		System.out.println(kPrimeFactor(n, k));
+	}
+}
+
+
+
+
+
+-----Sorting the Array
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int number_of_elements = scanner.nextInt();
+
+        int[] element = new int[number_of_elements + 1];
+        for (int i = 1; i <= number_of_elements; i++) {
+            element[i] = scanner.nextInt();
+        }
+
+        int descending_segments = 0;
+        boolean in_descending_segment = false;
+        boolean reversed_segment_fits = false;
+        int segment_start = 1;
+        int segment_end = number_of_elements;
+
+        for (int i = 2; i <= number_of_elements && descending_segments <= 1; i++) {
+            if (in_descending_segment) {
+                if (element[i] > element[i - 1]) {
+                    segment_end = i - 1;
+                    in_descending_segment = false;
+                }
+            } else {
+                if (element[i] < element[i - 1]) {
+                    in_descending_segment = true;
+                    segment_start = i - 1;
+                    descending_segments++;
+                }
+            }
+        }
+
+        if (descending_segments == 0) {
+            segment_end = segment_start;
+        }
+
+        if ((segment_end == number_of_elements || element[segment_start] <= element[segment_end + 1]) &&
+                (segment_start == 1 || element[segment_end] >= element[segment_start - 1])) {
+            reversed_segment_fits = true;
+        }
+
+        if (descending_segments <= 1 && reversed_segment_fits) {
+            System.out.println("yes");
+            System.out.println(segment_start + " " + segment_end);
+        } else {
+            System.out.println("no");
+        }
+    }
+}
+
+
+
+----Travell with minimum cost
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+
+        int cost1 = n * a;
+        int cost2 = (n / m) * b + (n % m) * a;
+        int cost3 = (n / m) * b + b;
+
+        int minimumCost = Math.min(cost1, Math.min(cost2, cost3));
+
+        System.out.println(minimumCost);
+    }
+}
+
+
+
+
+---Minimum Size Subarray Sum
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=scanner.nextInt();
+        }
+        int k=scanner.nextInt();
+        int ans=0;
+        int len=100000;
+        for(int i=0;i<n;i++){
+            int sum=0;
+            for(int j=i;j<n;j++){
+                sum+=arr[j];
+                if(sum==k && len>(j-i)){
+                    len=j-i;
+                }
+            }
+        }
+        System.out.println(len==100000?"0":len+1);
+    }
+}
+
+
+
+------Twin Primes in a Range
+
+
+import java.util.*;
+
+public class TwinPrimes {
+    
+    static boolean isPrime(int n) {
+        if (n <= 1)
+            return false;
+        if (n <= 3)
+            return true;
+
+        if (n % 2 == 0 || n % 3 == 0)
+            return false;
+
+        for (int i = 5; i * i <= n; i += 6) {
+            if (n % i == 0 || n % (i + 2) == 0)
+                return false;
+        }
+
+        return true;
+    }
+
+   
+    static void findTwinPrimes(int A, int B) {
+        for (int i = A; i <= B - 2; i++) {
+            int p1 = i;
+            int p2 = i + 2;
+            if (isPrime(p1) && isPrime(p2)) {
+                System.out.println(p1 + " " + p2);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int A = scanner.nextInt();
+        int B = scanner.nextInt();
+
+        findTwinPrimes(A, B);
+    }
+}
+
+
+
+------Climbing Stairs
+
+
+
+def countWays(n):
+	prev = 1
+	prev2 = 1
+	for i in range(2, n+1):
+		curr = prev + prev2
+		prev2 = prev
+		prev = curr
+	return prev
+n=int(input())
+print(countWays(n))
+
+
+
+---Codemind Parentheses
+
+
+
+import java.util.Stack;
+import java.util.Scanner;
+
+public class RemoveOuterParentheses {
+    public static String removeOuterParentheses(String s) {
+        StringBuilder result = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                if (!stack.isEmpty()) {
+                    result.append(c);
+                }
+                stack.push(c);
+            } else {
+                stack.pop();
+                if (!stack.isEmpty()) {
+                    result.append(c);
+                }
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        
+        String input_str = scanner.nextLine();
+
+        
+        String output_str = removeOuterParentheses(input_str);
+        System.out.println(output_str);
+    }
+}
+
+
+
+
+
+
+
+-----Disqualification of Member
+
+
+
+import java.util.Scanner;
+
+public class LastRemainingNumber {
+    public static int lastRemaining(int N) {
+        boolean leftToRight = true;
+        int remaining = N;
+        int step = 1;
+        int head = 1;
+
+        while (remaining > 1) {
+            if (leftToRight || remaining % 2 == 1) {
+                head += step;
+            }
+
+            remaining /= 2;
+            step *= 2;
+            leftToRight = !leftToRight;
+        }
+
+        return head;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+      
+        int N = scanner.nextInt();
+
+        
+        int result = lastRemaining(N);
+        System.out.println(result);
+    }
+}
+
+
+
+
+------Towers
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Towers {
+    public static int minTowers(ArrayList<Integer> arr, int n) {
+        ArrayList<Integer> ans = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            boolean placed = false;
+
+            for (int j = 0; j < ans.size(); j++) {
+                if (arr.get(i) < ans.get(j)) {
+                    ans.set(j, arr.get(i)); 
+                    placed = true;
+                    break;
+                }
+            }
+
+            if (!placed) {
+                ans.add(arr.get(i));
+            }
+        }
+
+        return ans.size();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+
+        ArrayList<Integer> cubes = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int cubeSize = scanner.nextInt();
+            cubes.add(cubeSize);
+        }
+        int result = minTowers(cubes, n);
+        System.out.println(result);
+    }
+}
+
+
+
+
+
+
+
+--------Count Sorted Vowel Strings
+
+
+def count_sorted_vowel_strings(n):
+    dp = [[0] * 5 for _ in range(n)]
+
+    for j in range(5):
+        dp[0][j] = 1
+
+    for i in range(1, n):
+        dp[i][0] = dp[i - 1][0] 
+        dp[i][1] = dp[i - 1][0] + dp[i - 1][1] 
+        dp[i][2] = dp[i - 1][0] + dp[i - 1][1] + dp[i - 1][2] 
+        dp[i][3] = dp[i - 1][0] + dp[i - 1][1] + dp[i - 1][2] + dp[i - 1][3] 
+        dp[i][4] = dp[i - 1][0] + dp[i - 1][1] + dp[i - 1][2] + dp[i - 1][3] + dp[i - 1][4]  
+
+    count = sum(dp[n - 1])
+
+    return count
+
+n = int(input())
+
+result = count_sorted_vowel_strings(n)
+print(result)
+
+
+
+
+----------Three Sum
+
+
+def countZeroSumTriplets(nums):
+    nums.sort()  
+    count = 0
+
+    for i in range(len(nums) - 2):
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue  
+        left, right = i + 1, len(nums) - 1
+
+        while left < right:
+            triplet_sum = nums[i] + nums[left] + nums[right]
+
+            if triplet_sum == 0:
+                count += 1
+                while left < right and nums[left] == nums[left + 1]:
+                    left += 1
+                while left < right and nums[right] == nums[right - 1]:
+                    right -= 1
+                left += 1
+                right -= 1
+            elif triplet_sum < 0:
+                left += 1
+            else:
+                right -= 1
+
+    return count
+
+
+n = int(input())
+nums = list(map(int, input().split()))
+result = countZeroSumTriplets(nums)
+print(result)
+
+
+
+
+
+
+
+
+
+-----Sum of Divisors
+
+
+def divisorSum( n ):
+    sum = 0
+    for i in range(1, n + 1):
+        sum += int(n / i) * i
+    return int(sum)
+n =int(input())
+print( divisorSum(n))
+
+
+
+
+------Maximum Profit Events
+
+
+def maxProfitEvents(events):
+    # Sort events by their ending time
+    events.sort(key=lambda x: x[1])
+    
+    n = len(events)
+    dp = [0] * n  
+    
+    for i in range(n):
+        dp[i] = events[i][2] 
+        
+        for j in range(i):
+            if events[i][0] >= events[j][1]:
+                dp[i] = max(dp[i], dp[j] + events[i][2])
+    max_profit = max(dp)
+    return max_profit
+
+n = int(input())
+events = []
+
+for _ in range(n):
+    s, e, p = map(int, input().split())
+    events.append([s, e, p])
+
+result = maxProfitEvents(events)
+print(result)
+
+
+
+
+
+-------Greatest Among Smaller on Left
+
+
+
+def update(bit, i, val):
+    while i < len(bit):
+        bit[i] = max(bit[i], val)
+        i += i & -i
+
+def query(bit, i):
+    result = 0
+    while i > 0:
+        result = max(result, bit[i])
+        i -= i & -i
+    return result
+
+def greatest_smaller_on_left(arr):
+    n = len(arr)
+    result = [-1] * n  
+    max_val = max(arr)  
+    bit = [0] * (max_val + 1) 
+
+    for i in range(n):
+        
+        max_smaller = query(bit, arr[i] - 1)
+
+        if max_smaller != 0:
+            result[i] = max_smaller
+
+        
+        update(bit, arr[i], arr[i])
+
+    return result
+
+n = int(input())
+arr = list(map(int, input().split()))
+
+result = greatest_smaller_on_left(arr)
+print(" ".join(map(str, result)))
+
+
+
+
+
+----Bike Booking
+
+
+
+def minimum_time_to_board_bike(N, cur, pos, time):
+    min_time = float('inf')  
+
+    for i in range(N):
+        distance = abs(pos[i] - cur) 
+        total_time = distance * time[i] 
+        min_time = min(min_time, total_time) 
+
+    return min_time
+
+N = int(input())
+cur = int(input())
+pos = list(map(int, input().split()))
+time = list(map(int, input().split()))
+
+
+result = minimum_time_to_board_bike(N, cur, pos, time)
+print(result)
+
+
+
+
+--------Steps to Make Array Non-Decreasing
+
+import java.util.*;
+public class Solution {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        System.out.println(totalSteps(arr));
+    }
+    public static int totalSteps(int[] nums) {
+        int max = 0;
+        int[] pos = new int[nums.length + 1];
+        int[] steps = new int[nums.length + 1];
+        int top = -1;
+        for (int i = 0; i <= nums.length; i++) {
+            int val = i == nums.length ? Integer.MAX_VALUE : nums[i];
+            while (top >= 0 && nums[pos[top]] <= val) {
+                if (top == 0) {
+                    max = Math.max(max, steps[pos[top--]]);
+                } else {
+                    steps[pos[--top]] = Math.max(steps[pos[top]] + 1, steps[pos[top + 1]]);
+                }
+            }
+            pos[++top] = i;
+        }
+        return max;
+    }
+}
+
+
+
+------Three Divisors
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class GFG {
+
+	static void numbersWith3Divisors(int N)
+	{
+        int c=0;
+            for (int i = 2; i * i <= N; i++) {
+    
+                if (isPrime(i)) {
+                    if (i * i <= N) {
+    
+                        c++;
+                    }
+                }
+            }
+            System.out.print(c);
+		}
+
+	public static boolean isPrime(int N)
+    {
+        for (int i = 2; i * i <= N; i++) {
+            if (N % i == 0)
+                return false;
+        }
+        return true;
+    }
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+        int N=sc.nextInt();
+		numbersWith3Divisors(N);
+	}
+}
+
+
+
+
+
+White Knight vs Black Knight
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        long n = scanner.nextLong();
+        long m = scanner.nextLong();
+        long total = n * m;
+        long ans = total * (total - 1);
+
+        if (n >= 2 && m >= 1) {
+            ans -= 4 * (n - 2) * (m - 1);
+        }
+
+        if (m >= 2 && n >= 1) {
+            ans -= 4 * (m - 2) * (n - 1);
+        }
+
+        System.out.println(ans);
+    }
+}
+
+
+
+Vowel Substrings
+
+def count_vowel_substrings(input_string):
+    vowels = {'a', 'e', 'i', 'o', 'u'}
+    count = 0
+
+    for i in range(len(input_string)):
+        seen_vowels = set()
+        for j in range(i, len(input_string)):
+            seen_vowels.add(input_string[j])
+            if seen_vowels == vowels:
+                count += 1
+
+    return count
+
+input_str = input()
+print(count_vowel_substrings(input_str))
+
+
+
+
+
+
+
+
+
+
+
+Find the Beauty
+
+
+
+
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class PrefixSumCount {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        
+        while (t-- > 0) {
+            int n = scanner.nextInt();
+            int[] arr = new int[n];
+
+            for (int i = 0; i < n; i++) {
+                arr[i] = scanner.nextInt();
+            }
+
+            Arrays.sort(arr);
+
+            int sm = 0;
+            int cnt = 0;
+
+            for (int i = 0; i < n; i++) {
+                if (arr[i] >= sm) {
+                    cnt++;
+                    sm += arr[i];
+                }
+            }
+
+            System.out.println(cnt);
+        }
+    }
+}
+
+
+
+Adjust The Join Date
+
+
+import java.util.Scanner;
+import java.lang.Math;
+
+public class CeilDivision {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        
+        while (t-- > 0) {
+            int n = scanner.nextInt();
+            int k = scanner.nextInt();
+            
+            int result = (int) Math.ceil((double) n / 5) - (int) Math.ceil((double) k / 5);
+            System.out.println(result);
+        }
+    }
+}
+
+
+
+
+Binary Search-1
+
+import java.util.Scanner;
+import java.util.Vector;
+
+public class BinarySearch {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int t = scanner.nextInt();
+        Vector<Integer> v = new Vector<>();
+
+        for (int i = 0; i < n; i++) {
+            v.add(scanner.nextInt());
+        }
+
+        int l = 0;
+        int h = n - 1;
+        int res = -1;
+
+        while (l <= h) {
+            int m = l + (h - l) / 2;
+
+            if (v.get(m) == t) {
+                res = v.get(m);
+                break;
+            } else if (v.get(m) > t) {
+                h = m - 1;
+            } else if (v.get(m) < t) {
+                l = m + 1;
+            }
+
+            System.out.print(v.get(m) + " ");
+        }
+
+        System.out.println(res);
+    }
+}
+
+
+
+String Game
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string canStringsBeSame(int n, string s) {
+    int count[52] = {0}; // Change the size to 52 to handle both lowercase and uppercase
+
+    for (char c : s) {
+        if (islower(c)) {
+            count[c - 'a']++;
+        } else {
+            count[c - 'A' + 26]++;
+        }
+    }
+
+    string a = "", b = "";
+
+    for (int i = 0; i < n; i++) {
+        if (islower(s[i]) && count[s[i] - 'a'] % 2 == 0) {
+            a += s[i];
+        } else if (isupper(s[i]) && count[s[i] - 'A' + 26] % 2 == 0) {
+            a += s[i];
+        } else {
+            b += s[i];
+        }
+
+        if (islower(s[i])) {
+            count[s[i] - 'a']--;
+        } else {
+            count[s[i] - 'A' + 26]--;
+        }
+    }
+
+    if (a == b) {
+        return "YES";
+    } else {
+        return "NO";
+    }
+}
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n;
+        cin >> n;
+
+        string s;
+        cin >> s;
+
+        string result = canStringsBeSame(n, s);
+        cout << result << endl;
+    }
+
+    return 0;
+}
+
+
+
+
+Two Sorted Arrays of Median
+#include<bits/stdc++.h>  
+
+using namespace std;  
+
+int main(){  
+
+    int n,m;  
+
+    cin>>n>>m;  
+
+    int a[n];  
+
+    int b[m];  
+
+     vector<int>v;  
+
+    for(int i=0;i<n;i++){  
+
+        cin>>a[i];  
+
+        v.push_back(a[i]);  
+
+    }  
+
+    for(int i=0;i<m;i++){  
+
+        cin>>b[i];  
+
+        v.push_back(b[i]);  
+
+    }  
+
+    sort(v.begin(),v.end());  
+
+    float sum=0;  
+
+    if((m+n)%2==0){ 
+
+        sum=v[(m+n)/2-1]+v[(m+n)/2];  
+
+        cout<<sum/2; 
+
+    }else{ 
+
+         sum=v[(m+n)/2]; 
+
+         cout<<sum; 
+
+    }  
+
+} 
+
+Count 2X2 Squares
+
+
+
+import java.util.Scanner;
+
+public class CalculateExpression {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        long x = scanner.nextLong();
+        System.out.println(((x / 2) * (x / 2) - (x / 2)) / 2);
+    }
+}
+
+
+
+Find Winner
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class MatchResults {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        
+        Map<Integer, Integer> matchesWon = new HashMap<>();
+        Map<Integer, Integer> matchesLost = new HashMap<>();
+        
+        for (int i = 0; i < n; i++) {
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            
+            matchesWon.put(a, matchesWon.getOrDefault(a, 0) + 1);
+            matchesLost.put(b, matchesLost.getOrDefault(b, 0) + 1);
+        }
+        
+        List<Integer> won = new ArrayList<>();
+        List<Integer> lost = new ArrayList<>();
+        
+        for (Map.Entry<Integer, Integer> entry : matchesWon.entrySet()) {
+            int team = entry.getKey();
+            int wonCount = entry.getValue();
+            
+            if (matchesLost.getOrDefault(team, 0) == 0) {
+                won.add(team);
+            }
+        }
+        
+        for (Map.Entry<Integer, Integer> entry : matchesLost.entrySet()) {
+            int team = entry.getKey();
+            int lostCount = entry.getValue();
+            
+            if (lostCount == 1) {
+                lost.add(team);
+            }
+        }
+        
+        Collections.sort(won);
+        Collections.sort(lost);
+        
+        for (int i = 0; i < won.size(); i++) {
+            if (i == won.size() - 1) {
+                System.out.println(won.get(i));
+            } else {
+                System.out.print(won.get(i) + " ");
+            }
+        }
+        
+        for (int team : lost) {
+            System.out.print(team + " ");
+        }
+    }
+}
+
+
+
+Palin Array
+
+
+import java.util.Scanner;
+
+public class PalindromeArray {
+    public static boolean isPalindrome(int n) {
+        int original = n;
+        int reversed = 0;
+
+        while (n > 0) {
+            int digit = n % 10;
+            reversed = reversed * 10 + digit;
+            n /= 10;
+        }
+
+        return original == reversed;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        boolean allPalindromes = true;
+
+        for (int num : arr) {
+            if (!isPalindrome(Math.abs(num))) {
+                allPalindromes = false;
+                break;
+            }
+        }
+
+        if (allPalindromes) {
+            System.out.println(1);
+        } else {
+            System.out.println(0);
+        }
+    }
+}
+
+
+Primes on Choice
+
+import java.util.Scanner;
+
+public class PrimeNumbers {
+    public static boolean isPrime(int n) {
+        if (n <= 1) {
+            return false;
+        }
+
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int r = scanner.nextInt();
+        int c = scanner.nextInt();
+        int t = 0;
+
+        while (true) {
+            if (c == 1) {
+                if (isPrime(++n)) {
+                    System.out.print(n + " ");
+                    t++;
+                }
+            } else {
+                if (isPrime(--n)) {
+                    System.out.print(n + " ");
+                    t++;
+                }
+            }
+
+            if (t == r) {
+                break;
+            }
+        }
+    }
+}
+
+
+
+Solve Equation
+import java.util.Scanner;
+
+public class CanCreateNumber {
+    public static boolean canCreateNumber(int N) {
+        for (int x = 0; x <= N / 2; x++) {
+            for (int y = 0; y <= N / 7; y++) {
+                if (2 * x + 7 * y == N) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+
+        if (canCreateNumber(N)) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+}
+
+
+Split Array Largest Sum
+
+import java.util.Scanner;
+
+public class SplitArrayLargestSum {
+    public static boolean isValidSplit(int[] arr, int k, long maxSum) {
+        int count = 1;
+        long currSum = 0;
+
+        for (int num : arr) {
+            currSum += num;
+            if (currSum > maxSum) {
+                count++;
+                currSum = num;
+            }
+        }
+
+        return count <= k;
+    }
+
+    public static int splitArrayLargestSum(int[] arr, int k) {
+        long left = 0;
+        long right = 0;
+
+        for (int num : arr) {
+            left = Math.max(left, num);
+            right += num;
+        }
+
+        while (left < right) {
+            long mid = left + (right - left) / 2;
+            if (isValidSplit(arr, k, mid)) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return (int) left;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int k = scanner.nextInt();
+
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        int minMaxSum = splitArrayLargestSum(arr, k);
+        System.out.println(minMaxSum);
+    }
+}
+
+
+
+String Equal
+
+
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class CompareStrings {
+    public static int fun(String s1, String s2) {
+        if (s1.length() != s2.length()) {
+            return 0;
+        }
+
+        Set<Character> set1 = new HashSet<>();
+        Set<Character> set2 = new HashSet<>();
+
+        for (char c : s1.toCharArray()) {
+            set1.add(c);
+        }
+
+        for (char c : s2.toCharArray()) {
+            set2.add(c);
+        }
+
+        return set1.equals(set2) ? 1 : 0;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String s1 = scanner.next();
+        String s2 = scanner.next();
+
+        int result = fun(s1, s2);
+        System.out.println(result);
+    }
+}
+
+
+
+
+Find the K Digit Length Numbers in a Array
+
+import java.util.Scanner;
+
+public class CountKDigitNumbers {
+    public static int digitCount(int n) {
+        return Integer.toString(Math.abs(n)).length();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int k = scanner.nextInt();
+
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        int count = 0;
+
+        for (int num : arr) {
+            if (digitCount(num) == k) {
+                count++;
+            }
+        }
+
+        System.out.println(count);
+    }
+}
+
+
+
+Search in 2D Matrix
+
+import java.util.Scanner;
+
+public class Search2DArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+
+        int[][] arr = new int[n][m];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                arr[i][j] = scanner.nextInt();
+            }
+        }
+
+        int k = scanner.nextInt();
+        boolean found = false;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (arr[i][j] == k) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
+    }
+}
+
+
+
+Distinct Prime Factors
+
+x=int(input())
+l=[2,3,5,7,11,13,19,21,23,29,31,37,41,43,47,51]
+for i in range(x):
+    c=1
+    m=0
+    a=int(input())
+    for i in range(len(l)):
+        c*=l[i]
+        if c<=a:
+            m+=1
+        else:
+            break
+    print(m)
+
+
+Array Transformation
+
+a=int(input())
+ar=list(map(int,input().split()))
+ar.sort()
+if ar[0]!=1:
+    print('NO')
+else:
+    s=ar[0]
+    for i in range(1,a):
+        if ar[i]>s:
+            print('NO')
+            break
+        s+=ar[i]
+    else:
+        print('YES')
+
+
+
+
+Whiteboards
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        
+        while (n-- > 0) {
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+
+            for (int i = 0; i < a; i++) {
+                int val = scanner.nextInt();
+                pq.add(-val);
+            }
+
+            for (int i = 0; i < b; i++) {
+                int val = scanner.nextInt();
+                if (!pq.isEmpty()) {
+                    pq.poll();
+                    pq.add(-val);
+                }
+            }
+
+            long res = 0;
+            while (!pq.isEmpty()) {
+                res += -pq.poll();
+            }
+            
+            System.out.println(res);
+        }
+    }
+}
+
+
+
+
+Series of Different Sequences
+
+n,a,b,c=int(input()),3,-2,4
+for _ in range(n//2):
+    print(a,b,end=' ')
+    a,b,c=a*3-4,b+c,c*5
+print(a,b) if n&1 else print(a)
+
+
+
+
+Abacus II
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.next();
+        int n = s.length();
+        int[][] v = new int[5][n];
+        
+        for (int i = 0; i < n; i++) {
+            int val = s.charAt(i) - '0';
+            
+            if (val >= 5) {
+                val -= 5;
+                v[0][i]++;
+            }
+            
+            int j = 1;
+            while (val > 0) {
+                v[j++][i]++;
+                val--;
+            }
+        }
+        
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(v[i][j]);
+                if (j == n - 1) {
+                    System.out.println();
+                } else {
+                    System.out.print(" ");
+                }
+            }
+        }
+    }
+}
+
+
+Abacus III
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+        int[][] v = new int[5][m];
+        
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < m; j++) {
+                v[i][j] = scanner.nextInt();
+            }
+        }
+        
+        for (int j = 0; j < m; j++) {
+            int val = 0;
+            for (int i = 0; i < 5; i++) {
+                if (v[i][j] == 1) {
+                    if (i == 0) {
+                        val += 5;
+                    } else {
+                        val++;
+                    }
+                }
+            }
+            System.out.print(val);
+        }
+    }
+}
+
+
+Asta and Yuno
+
+a=int(input())
+b=int(input())
+c=int(input())
+tot=a*7+b*5
+res=tot//c
+print(res)
+
+
+Lost Bishop
+
+
+for t in range(int(input())):
+    b=[]
+    s=input()
+    for i in range(8):
+        row=input()
+        b.append(row)
+        # print(len(row))
+    f=0
+    for i in range(1,7):
+        for j in range(1,7):
+            if b[i][j]=='#':
+                if b[i-1][j-1]=='#' and b[i-1][j+1]=='#' and b[i+1][j-1]=='#' and b[i+1][j+1]=='#':
+                    print(i+1,j+1)
+                    f=1
+                    break
+        if f==1:
+            break
+
+
+
+
+
+Count Divisible Digits
+
+a=int(input())
+s = str(a)
+c=0
+for i in s:
+    v=int(i)
+    if v!=0 and a%v==0:
+        c+=1
+print(c)
+
+
+
+Find Transition Point
+
+a=int(input())
+ar=list(map(int,input().split()))
+z=o=0
+for i in ar:
+    if i==1:
+        o+=1
+    else:
+        z+=1
+if z==a:
+    print(-1)
+elif o==a:
+    print(0)
+else:
+    for i in range(a):
+        if ar[i]==1:
+            print(i)
+            break
+
+
+
+
+D Occurs Exactly K Times
+
+def count_special_numbers(a, b, d, k):
+    def count_digit_occurrences(num, digit):
+        return str(num).count(str(digit))
+
+    count = 0
+    for num in range(a, b + 1):
+        if count_digit_occurrences(num, d) == k:
+            count += 1
+
+    return count
+
+# Read input values
+a, b, d, k = map(int, input().split())
+
+# Call the function and print the result
+result = count_special_numbers(a, b, d, k)
+print(result)
+
+
+
+Find the Large One
+print(max(list(input())))
+
+
+82
+Distance Between Letters
+
+n=input()
+o=n[::-1]
+a=list(map(int,input().split()))
+x=[]
+k=[]
+s=''
+for i in n:
+    if i not in s:
+        s+=i
+for i in s:
+    x.append(a[ord(i)-97])
+for i in range(len(s)):
+    u=n.index(s[i])
+    v=len(n)-(o.index(s[i]))
+    v-=1
+    k.append(abs(u-v)-1)
+if k==x:
+    print("true")
+else:
+    print("false")
+
+
+
+
+
+
+Cyclic Rotation
+
+
+n=int(input())
+x=list(map(int,input().split()))
+a=int(input())
+print(x[0],end=" ")
+print(*x[n-a:],end=" ")
+print(*x[1:n-a],end=" ")
+
+
+
+Small and Large Elements Appearences
+
+
+n=input()
+n=n.replace(" ","")
+print(min(n),n.count(min(n)),end=" ")
+print(max(n),n.count(max(n)))
+
+
+Strong Element
+
+n=int(input())
+a=list(map(int,input().split()))
+b=[]
+l=[]
+for i in a:
+    if i not in b:
+        b.append(i)
+for i in b:
+    l.append(a.count(i))
+if l.count(max(l))>1:
+    print("No")
+else:
+    print("Yes")
+    print(b[l.index(max(l))])
