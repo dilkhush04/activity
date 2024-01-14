@@ -1,0 +1,2586 @@
+Row Wise Sum of a Matrix
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int m=sc.nextInt();
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum=0;
+            for(int j=0;j<m;j++){
+                sum+=sc.nextInt();
+            }
+            System.out.print(sum+" ");
+        }
+    }
+}
+
+Count Palindrome Words in a String
+s=input()
+li=s.split(" ")
+c=0
+for i in li:
+    if(i==i[::-1]):
+        c +=1
+print(c)
+
+
+Disarium Number
+
+import math
+n=int(input())
+s=str(n)
+temp=0
+temp1=n
+for i in range(len(s), 0, -1):
+    data=n%10
+    temp +=math.pow(data, i)
+    n //=10
+if(temp==temp1):
+    print('True')
+else:
+    print('False')
+
+Small and Large Characters
+s=input()
+s=s.split(" ")
+for i in s:
+    sm='z'
+    lr='a'
+    for j in i:
+        sm=min(sm, j)
+        lr=max(lr, j)
+    print(sm,lr, end=" ")
+
+
+Common Words
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] s1 = scanner.nextLine().split(" ");
+        String[] s2 = scanner.nextLine().split(" ");
+
+        HashMap<String, Integer> d = new HashMap<>();
+
+        for (String word : s1) {
+            String lowercaseWord = word.toLowerCase();
+            if (d.containsKey(lowercaseWord)) {
+                d.put(lowercaseWord, d.get(lowercaseWord) + 1);
+            } else {
+                d.put(lowercaseWord, 1);
+            }
+        }
+
+        ArrayList<String> res = new ArrayList<>();
+
+        for (String word : s2) {
+            String lowercaseWord = word.toLowerCase();
+            if (d.containsKey(lowercaseWord) && d.get(lowercaseWord) > 0) {
+                res.add(word);
+                d.put(lowercaseWord, d.get(lowercaseWord) - 1);
+            }
+        }
+
+        for (String word : res) {
+            System.out.print(word + " ");
+        }
+    }
+}
+
+
+Count Unique Characters
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        s=s.toLowerCase();
+        Map<Character , Integer> hm=new HashMap<>();
+        for(char ch : s.toCharArray()){
+            if(!Character.isWhitespace(ch))
+                hm.put(ch, hm.getOrDefault(ch, 0)+1);
+        }
+        int c=0;
+        for(char ch : hm.keySet()){
+            if(hm.containsKey(ch) &&hm.get(ch)==1 ){
+                c++;
+            }
+        }
+        System.out.println(c);
+    }
+}
+
+
+GCD or HCF
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        int b=sc.nextInt();
+        System.out.println(fun(a, b));
+    }
+    public static int fun(int a, int b){
+        if(a==0)return b;
+        return fun(b%a, a);
+    }
+}
+
+
+Non Common Characters
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String a=sc.nextLine();
+        String b=sc.nextLine();
+        a=a.toLowerCase();
+        b=b.toLowerCase();
+        ArrayList<Character> ans=new ArrayList<>();
+        for(char ch : a.toCharArray()){
+            if(!Character.isWhitespace(ch)){
+                if(!b.contains(ch+"") && !ans.contains(ch)){
+                    ans.add(ch);
+                }
+            }
+        }
+        for(char ch : b.toCharArray()){
+            if(!Character.isWhitespace(ch)){
+                if(!a.contains(ch+"") && !ans.contains(ch)){
+                    ans.add(ch);
+                }
+            }
+        }
+        Collections.sort(ans);
+        for(char ch: ans){
+            System.out.print(ch);
+        }
+    }
+}
+
+Sum of all Elements in a Matrix
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int m=sc.nextInt();
+        int sum=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                sum+=sc.nextInt();
+            }
+            
+        }
+        System.out.print(sum);
+    }
+}
+
+
+Absolute Difference of Small and Large
+s=input()
+s=s.split(" ")
+for i in s:
+    sm='z'
+    lr='a'
+    for j in i:
+        sm=min(sm, j)
+        lr=max(lr, j)
+    print(ord(lr)-ord(sm), end=" ")
+
+
+Unique number
+n=int(input())
+s=list(str(n))
+
+f=True
+for i in s:
+    if(s.count(i)>1):
+        f=False
+        break
+if(f):
+    print("Unique Number")
+else:
+    print('Not Unique Number')
+
+Fibonacci or Not
+n=int(input())
+a=1
+b=0
+c=0
+while(c<n):
+    c=a+b
+    a=b
+    b=c
+print(c==n)
+
+
+Sum of Even and Odd Elements in a Matrix
+
+import java.util.*;
+public class SumOf_EvenRowAnd_OddRow
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int sum1=0,sum2=0;
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+        int[][] a=new int[r][c];
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                a[i][j]=sc.nextInt();
+            }
+            
+        }
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+               if(a[i][j]%2==0)
+               sum1+=a[i][j];
+               else
+               {
+                   sum2+=a[i][j];
+               }
+            }
+            
+        }
+        System.out.println(sum1+" "+sum2);
+    }
+}
+
+Maximum Sum of Row Wise Sum of a Matrix
+
+import java.util.*;
+public class SumOf_all_element
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int sum1=0,temp=-999;
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+        int[][] a=new int[r][c];
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                a[i][j]=sc.nextInt();
+            }
+            
+        }
+        
+        for(int i=0;i<r;i++)
+        {
+            sum1=0;
+            for(int j=0;j<c;j++)
+            {
+    
+               sum1+=a[i][j];
+              
+            }
+            if(temp<sum1)
+            {
+                temp=sum1;
+            }
+            
+        }
+        System.out.println(temp);
+    }
+}
+
+Difference B/W Sum of Small and Large
+s=input()
+s=s.split(" ")
+sum=0
+for i in s:
+    sm='z'
+    lr='a'
+    for j in i:
+        sm=min(sm, j)
+        lr=max(lr, j)
+    sum +=ord(lr)-ord(sm)
+print(sum)
+
+
+Reverse Words and Positions
+s = input()
+s = s.split(" ")
+stack = []
+
+for i in s:
+    stack.append(i[::-1])
+
+while stack: 
+    print(stack.pop(), end=" ")
+
+
+Find the time
+
+x = int(input())
+print(int(x/3))
+
+
+Ugly Number
+
+import java.util.*;
+public class UglyNumber
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int  n=sc.nextInt();
+        while(n!=1)
+        {
+            if(n%2==0)
+            {
+                n=n/2;
+            }
+            else
+             if(n%3==0)
+            {
+                n=n/3;
+            }
+            else
+             if(n%5==0)
+            {
+                n=n/5;
+            }
+            else
+            {
+              System.out.println("Not Ugly Number");
+                return ;
+            }
+            
+            
+        }
+     System.out.println("Ugly Number");
+       
+    }
+}
+
+Sum of Even Rows and Sum of Odd Rows in a Matrix
+import java.util.*;
+public class SumOf_EvenRowAnd_OddRow
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int sum1=0,sum2=0;
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+        int[][] a=new int[r][c];
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                a[i][j]=sc.nextInt();
+            }
+            
+        }
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+               if(i%2==0)
+               sum1+=a[i][j];
+               else
+               {
+                   sum2+=a[i][j];
+               }
+            }
+            
+        }
+        System.out.println(sum1+" "+sum2);
+    }
+}
+
+
+Find the Element
+n=int(input())
+li=list(map(int, input().split()))
+for i in li:
+    if li.count(i)==1:
+        print(i)
+        break
+
+Amicable Numbers
+import java.util.*;
+public class AmicableNumber
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int m=sc.nextInt();
+        int i,s1=0,s=0;
+        for(i=1;i<n/2+1;i++)
+        {
+            if(n%i==0)
+            {
+                s=s+i;
+            }
+        }
+         for(i=1;i<m/2+1;i++)
+        {
+            if(m%i==0)
+            {
+                s1=s1+i;
+            }
+        }
+        if(s1==n && s==m)
+        {
+            System.out.println("Amicable");
+        }
+        else
+        {
+            System.out.println("Not Amicable");
+        }
+    }
+}
+
+Reverse Even Positional Words
+s = input()
+s = s.split(" ")
+k=0
+for i in s:
+    if(k%2==0):
+        print(i[::-1], end=" ")
+    else:
+        print(i, end=" ")
+    k +=1
+
+
+Count Spaces in a String
+s=input()
+print(s.count(' '))
+
+
+Harshed number
+import java.util.*;
+public class Harshed_number
+{
+    public static String number(int n)
+    {
+        int sum=0;
+        int m=n;
+        while(n!=0)
+        {
+            sum+=n%10;
+            n/=10;
+        }
+        if(m%sum==0)
+        return "True";
+        else
+        return "False";
+    }
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        System.out.println(number(n));
+    }
+}
+
+
+Adam number
+import java.util.*;
+public class AdanNumber
+{
+   
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int sq=n*n;
+        int rev=0,rev1=0;
+        while(n!=0)
+        {
+            int rem=n%10;
+            rev=rev*10+rem;
+            n/=10;
+        }
+        int sq1=rev*rev;
+        while(sq1!=0)
+        {
+            int rem1=sq1%10;
+            rev1=rev1*10+rem1;
+            sq1/=10;
+        }
+        if(sq==rev1)
+        {
+            System.out.println("True");
+        }
+        else
+        {
+             System.out.println("False");
+        }
+         
+        
+        
+    }
+        
+       
+}
+
+Given a String, find the Maximum Length of the Words in given String
+import math
+
+s = input()
+s = s.split(" ")
+max_length = -1
+
+for word in s:
+    max_length = max(max_length, len(word))
+
+print(max_length)
+
+
+Find two Distinct Prime Numbers with Given Product
+import java.util.*;
+
+public class FindTwoDistinctPrimeNumbersProduct {
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        int prime1 = -1;
+        int prime2 = -1;
+
+        for (int i = 2; i <= n; i++) {
+            if (isPrime(i)) {
+                int complement = n / i;
+                if ( complement*i==n && isPrime(complement)) {
+                    prime1 = i;
+                    prime2 = complement;
+                    break;
+                }
+            }
+        }
+
+        if (prime1 !=prime2) {
+            System.out.println(prime1 + " " + prime2);
+        } else {
+            System.out.println("-1");
+        }
+    }
+}
+
+Good Investment or Not
+
+a, b=map(int, input().split())
+if(a>=2*b):
+    print("YES")
+else:
+    print("NO")
+
+
+Count Elements I
+n,m=map(int, input().split())
+li1=list(map(int, input().split()))
+li2=list(map(int, input().split()))
+set1=set(li1)
+set2=set(li2)
+set3=set1.intersection(set2)
+print(len(set3))
+
+
+
+Sum of Diagonal Values
+import java.util.*;
+public class Diagonal_sum
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int sum1=0;
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+        int[][] a=new int[r][c];
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                a[i][j]=sc.nextInt();
+            }
+            
+        }
+        
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                if(i==j)
+                sum1+=a[i][j];
+               
+              
+            }
+            
+            
+        }
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                if(i==r/2 && j==c/2)
+                continue;
+                
+                if(i+j==r-1)
+                sum1+=a[i][j];
+              
+            }
+            
+            
+        }
+        
+        System.out.print(sum1);
+    }
+}
+
+
+Maximum Sum of Column Wise Sum of a Matrix
+import java.util.*;
+public class SumOf_all_element
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int sum1=0,temp=-999;
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+        int[][] a=new int[r][c];
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                a[i][j]=sc.nextInt();
+            }
+            
+        }
+        
+        for(int i=0;i<c;i++)
+        {
+            sum1=0;
+            for(int j=0;j<r;j++)
+            {
+    
+               sum1+=a[j][i];
+              
+            }
+            if(temp<sum1)
+            {
+                temp=sum1;
+            }
+            
+        }
+        System.out.println(temp);
+    }
+}
+
+
+Sort the Words Based on Length
+s=input()
+s=s.split(" ")
+s.sort(key=lambda s:(len(s),s))
+print(*s)
+
+Unique Odd Elements Sum
+n=input()
+li=list(map(int, input().split()))
+set1=set()
+for i in li:
+    if i%2!=0:
+        set1.add(i)
+print(sum(set1))
+
+Primes Greater than k
+import math
+
+def isPrime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+n = input()
+li = list(map(int, input().split()))
+k = int(input())
+c = 0
+for i in li:
+    if i >= k and isPrime(i):
+        c += 1
+
+print(c)
+
+
+Count Elements II
+n,m=map(int,input().split())
+l1=list(map(int, input().split()))
+l2=list(map(int, input().split()))
+li1=set(l1)
+li2=set(l2)
+c=0
+for i in li1:
+    if i not in li2:
+        c +=1
+for i in li2:
+    if i not in li1:
+        c +=1
+print(c)
+
+
+Average of Primes
+import math
+
+def isPrime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+n = input()
+li = list(map(int, input().split()))
+c = 0
+s=0
+for i in li:
+    if isPrime(i):
+        s=s+i
+        c += 1
+
+formatted_s = "{:.2f}".format(s/c)
+print(formatted_s)
+
+
+Kth Largest Element in the Array
+
+n = int(input())
+li = list(map(int, input().split()))
+k=int(input())
+l=sorted(li)
+print(l[n-k])
+
+Color Code
+import java.util.*;
+public class colorCode
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        char c=sc.next().charAt(0);
+        if(c=='V' || c=='v')
+        {
+            System.out.println("Violet");
+        }
+        else if(c=='I'|| c=='i')
+        {
+            System.out.println("Indigo");
+        }
+        else if(c=='B' ||c=='b')
+        {
+            System.out.println("Blue");
+        }
+        else if(c=='G'||c== 'g')
+        {
+            System.out.println("Green");
+        }
+        else if(c=='Y'||c== 'y')
+        {
+            System.out.println("Yellow");
+        }
+        else if(c=='O' ||c== 'o')
+        {
+            System.out.println("Orange");
+        }
+        else if(c=='R' || c=='r')
+        {
+            System.out.println("Red");
+        }
+        else
+        {
+            System.out.println("-1");
+        }
+        
+    }
+}
+
+UNIQUE MAXIMUM NUMBER
+n=int(input())
+li=list(map(int, input().split()))
+maxDig=-1
+for i in li:
+    if li.count(i)==1:
+        maxDig=max(maxDig, i)
+print(maxDig)
+
+
+Display Season
+a=int(input())
+if a in [4,5,6]:
+    print("Summer")
+elif a in [7,8,9,10]:
+    print("Rainy")
+elif a in [11,12,1]:
+    print("Winter")
+elif a in [2,3]:
+    print("Spring")
+else:
+    print(-1)
+
+Monk Teaches Palindrome
+for i in range(int(input())):
+    s = input()
+    if s == s[::-1]:
+        print("YES", "EVEN" if len(s) % 2 == 0 else "ODD",)
+    else:
+        print("NO")
+
+Closest Palindrome
+import math
+def fun(n):
+    return str(n)==str(n)[::-1]
+n=int(input())
+low=n-1
+high=n+1
+while not fun(low):
+    low=low-1
+while not fun(high):
+    high +=1
+
+ls=abs(low-n)
+rs=abs(high-n)
+if ls==rs:
+    print(low, high)
+elif ls>rs:
+    print(high)
+else:
+    print(low)
+
+First Non Repeated Character
+for i in range(int(input())):
+    n=int(input())
+    s=input()
+    f=1
+    for i in s:
+        if s.count(i)==1:
+            print(i)
+            f=0
+            break
+    if f==1:
+        print(-1)
+   
+Sum of digits in a String
+s = input()
+total_sum = 0
+for char in s:
+    if char.isdigit():
+        total_sum += int(char)
+
+print(total_sum)
+
+
+String contain digit or not
+s = input()
+total_sum = 0
+for char in s:
+    if char.isdigit():
+        total_sum += 1
+if(total_sum!=0):
+    print("Contains",total_sum,"digit")
+else:
+    print("Doesn't contain digit")
+
+Count Sorted Rows in a Matrix
+def valid(arr):
+    f=True
+    for i in range(1,len(arr)):
+        if arr[i]<arr[i-1]:
+            f=False
+            break
+    if f:
+        return True
+    f=True
+    for i in range(1,len(arr)):
+        if arr[i]>arr[i-1]:
+            f=False
+            break
+    return f
+a,b=map(int,input().split())
+c=0
+for i in range(a):
+    row=list(map(int,input().split()))
+    if valid(row):
+        c+=1
+print(c)
+
+Happy number
+import java.util.*;
+public class Happyppy
+{
+    static int happy(int n)
+    {
+        int s=0;
+        while(n!=0)
+        {
+            int rem=n%10;
+            s=s+rem*rem;
+            n/=10;
+        }
+        return s;
+    }
+   
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        n=happy(n);
+        while(1>0)
+        {
+            if(n<10)
+            {
+                if(n==1 || n==7)
+                {
+                    System.out.println("True");
+                    break;
+                }
+                else
+                {
+                    System.out.println("False");
+                    break;
+                }
+            }
+            else
+            {
+               n=happy(n);
+            }
+           
+            
+        }
+        
+    }
+        
+       
+    }
+
+Program to find the Sum of Perfect Square Elements in an Array
+import java.util.*;
+public class SumOfperfactQuare
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] a=new int[n];
+        int i,j,k,sum=0;
+        for(i=0;i<n;i++)
+        {
+            a[i]=sc.nextInt();
+             if(Math.sqrt(a[i]) == Math.floor(Math.sqrt(a[i])))
+            {
+                sum=sum+a[i];
+            }
+            
+        }
+      
+        
+        System.out.println(sum);
+       
+        
+    }
+}
+
+Monk and Welcome Problem
+import java.util.*;
+public class MonkAndWelcomeProblem
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int i,j;
+        int[] a=new int[n];
+         int[] b=new int[n];
+         for(i=0;i<n;i++)
+         {
+             a[i]=sc.nextInt();
+         }
+          for(i=0;i<n;i++)
+         {
+             b[i]=sc.nextInt();
+         }
+          for(i=0;i<n;i++)
+         {
+             System.out.print((a[i]+b[i])+" ");
+         }
+    }
+}
+
+Binary Array to Decimal
+
+a=int(input())
+ar=list(map(int,input().split()))
+res=0
+for i in range(a-1,-1,-1):
+    if ar[i]==1:
+        res=res|(1<<(a-i-1))
+print(res)
+
+Sort Consonants
+
+s=input().split()
+for word in s:
+    cons=[]
+    for i in word:
+        if i not in "aeiou":
+            cons.append(i)
+    cons.sort()
+    idx=0
+    res=""
+    for i in word:
+        if i not in "aeiou":
+            res +=cons[idx]
+            idx +=1
+        else:
+            res +=i
+    print(res, end=" ")
+
+
+Sort Words of a String
+s=input().split()
+for word in s:
+    li=[]
+    for char in word:
+        if  char.isalnum():
+            li.append(char)
+    li.sort()
+    res=""
+    idx=0
+    for i in word:
+        if  i.isalnum():
+            res +=li[idx]
+            idx +=1
+        else:
+            res +=i
+    print(res, end=" ")
+
+Display unique values in an Array
+n=int(input())
+li=list(map(int, input().split()))
+f=0
+for i in li:
+    if li.count(i)==1:
+        f=1
+        print(i, end=" ")
+if f==0:
+    print(-1)
+
+Count of the Non-Prime Divisors of a given Number
+import math
+def fun(n):
+    if n<2:
+        return False
+    for i in range(2, int(math.sqrt(n))+1):
+        if n%i==0:
+            return False
+    return True
+n=int(input())
+c=0
+for i in range(1, n+1):
+    if n%i==0 and not fun(i):
+        c +=1
+print(c)
+
+Richest Customer Wealth
+n,m=map(int, input().split())
+maxS=-999
+for i in range(n):
+    li=list(map(int, input().split()))
+    maxS=max(maxS, sum(li))
+print(maxS)
+
+
+Counting the Occurances
+s=input()
+c=0
+for i in s:
+    if i.isdigit():
+        c+=1
+if c>0:
+    print("Contains",c,"digit")
+else:
+    print("Doesn't contain digit")
+
+Generate Array II
+n=int(input())
+li=list(map(int, input().split()))
+for i in range(0, n-1, 2):
+    for j in range(li[i+1]):
+        print(li[i], end=" ")
+
+
+Tv Subscription
+import math
+for i in range(int(input())):
+    n,m=map(int, input().split())
+    cost=math.ceil(n/6)
+    print(cost*m)
+
+Max of String
+s=input()
+print(max(s))
+
+Self Dividing Numbers
+def selfDiv(n):
+    temp=n
+    while n>0:
+        rem=n%10
+        if rem==0 or temp%rem!=0 :
+            return False
+        n //=10
+    return True
+n=int(input())
+m=int(input())
+for i in range(n, m+1):
+    if selfDiv(i):
+        print(i, end=" ")
+ 
+
+String Concatenate
+s1=input()
+s2=input()
+s1+=s2
+s1=list(s1)
+s1.sort()
+print(''.join(s1))
+
+Binary Search Tracing
+import java.util.*;
+public class BinarySearch{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int k=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)arr[i]=sc.nextInt();
+        int low=0, high=n-1;
+        boolean f=true;
+        while(low<=high){
+            int mid=(high+low)/2;
+            System.out.print(arr[mid]+" ");
+            if(arr[mid]==k)f=false;
+            if(arr[mid]<k){
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+
+        }
+        if(f)System.out.print(-1);
+    }
+}
+
+Absolute Difference of Two Matrices
+import java.util.*;
+public class AbsoluteDifference{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[][] arr=new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        int[][] arr2=new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                arr2[i][j]=sc.nextInt();
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                System.out.print(Math.abs(arr[i][j]-arr2[i][j]));
+                if (j < n - 1) {
+                    System.out.print(" "); 
+                }
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+Final Value of Variable After Performing Operations
+import java.util.*;
+public class AbsoluteDifference{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        int x=0;
+        String[] arr = s.split(" ");
+        for(String word : arr){
+            if(word.charAt(0)=='+'){
+                ++x;
+            }
+            else if(word.charAt(0)=='-'){
+                --x;
+            }
+            else if(word.charAt(word.length()-1)=='+'){
+                x++;
+            }
+            else{
+                x--;
+            }
+        }
+        System.out.println(x);
+        
+    }
+}
+
+
+
+Duplicate Zerosimport 
+java.util.*;
+public class Solution {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        duplicateZeros(arr);
+        for(int i : arr){
+            System.out.print(i+" ");
+        }
+    }
+    public static void duplicateZeros(int[] arr) {
+        int length = arr.length;
+        int zeros = 0;
+
+        for (int i = 0; i < length; i++) {
+            if (arr[i] == 0) {
+                zeros++;
+            }
+        }
+
+        int lastIndex = length - 1;
+        int newIndex = length - 1 + zeros;
+
+        while (lastIndex >= 0) {
+            if (newIndex < length) {
+                arr[newIndex] = arr[lastIndex];
+            }
+
+            if (arr[lastIndex] == 0) {
+                newIndex--;
+
+                if (newIndex < length) {
+                    arr[newIndex] = 0;
+                }
+            }
+
+            lastIndex--;
+            newIndex--;
+        }
+    }
+}
+
+Deletion of Consecutive Duplicate Characters
+import java.util.Scanner;
+
+public class Consecutive {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine(); 
+
+        while (n-- > 0) {
+            String s = sc.nextLine();
+            char ch = s.charAt(0);
+            int c = 0;
+
+            for (int i = 1; i < s.length(); i++) {
+                if (ch == s.charAt(i)) {
+                    c++;
+                } else {
+                    ch = s.charAt(i);
+                }
+            }
+
+            System.out.println(c);
+        }
+    }
+}
+
+
+Number of Good Pairs
+import java.util.Scanner;
+
+public class Consecutive {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int c=0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(arr[i]==arr[j]){
+                    c++;
+                }
+            }
+        }
+        System.out.println(c);
+
+    }
+}
+
+
+Balanced Array
+import java.util.Scanner;
+
+public class Consecutive {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt();
+            int[] arr=new int[n];
+            int s=0;
+            for(int i=0;i<n;i++){
+                arr[i]=sc.nextInt();
+                s+=arr[i];
+            }
+            int curr=0;
+            boolean f=false;
+            for(int i=0;i<n;i++){
+                s-=arr[i];
+                if(curr==s){
+                    f=true;
+                    break;
+                }
+                curr+=arr[i];
+            }
+            if(f){
+                System.out.println("YES");
+            }
+            else{
+                System.out.println("NO");
+            }
+            
+        }
+
+    }
+}
+
+
+Minimum Shoes to Buy
+import math
+n, m=map(int, input().split())
+res=n
+if(m<n):
+    res +=n-m
+print(res)
+
+
+Little Monk and Good String
+
+s=input()
+c=0
+mx=-1
+for i in s:
+    if i in "aeiou":
+        c +=1
+    else:
+        mx=max(mx,c)
+        c=0
+print(max(c, mx))
+
+
+Minimum Unique Digit Sum
+def fun(n):
+    res=""
+    for i in range(9, 0, -1):
+        if(n>=i):
+            n -=i
+            res +=str(i)
+    return res
+
+n=int(input())
+print(fun(n)[::-1])
+
+
+
+Rotation
+
+for _ in range(int(input())):
+    n, k=map(int, input().split())
+    li=list(map(int, input().split()))
+    k=k%n
+    for i in range(k):
+        temp=li[n-1]
+        for j in range(n-1, 0, -1):
+            li[j]=li[j-1]
+        li[0]=temp
+    print(*li)
+
+Clothing Store
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        HashMap<Integer, Integer> hm=new HashMap<>();
+        for(int ele : arr){
+            hm.put(ele, hm.getOrDefault(ele, 0)+1);
+        }
+        int ans=0;
+        for(int data : hm.values()){
+            ans+=data/2;
+           // System.out.println(data);
+        }
+        System.out.println(ans);
+    }
+}
+
+Data Arrangement
+n=int(input())
+li=list(map(int, input().split()))
+l=[]
+for i in li:
+    if(i<0):
+        print(i, end=" ")
+    else:
+        l.append(i)
+print(*l)
+
+
+Integer Problem
+
+t = int(input())
+for _ in range(t):
+    a, b = map(int, input().split())
+    difference = abs(a - b)  
+    moves = (difference + 9) // 10
+    print(moves)
+
+Find Index Position
+
+def find_index(arr, n, K):
+    for i in range(n):
+        if arr[i] == K:
+            return i
+        elif arr[i] > K:
+            return i
+    return n
+
+for _ in range(int(input())):
+    n, t = map(int, input().split())
+    l = list(map(int, input().split()))
+    print(find_index(l, n, t))
+
+
+Don and 3
+for _ in range(int(input())):
+    a, b = map(int, input().split())
+    c = 0
+
+    while (a % 3 != 0 and b % 3 != 0):
+        temp = a
+        a = abs(a - b)
+        b = abs(temp - b)
+        c += 1
+
+    print(c)
+
+
+Chocolate Distribution
+n, k = map(int, input().split())
+li = list(map(int, input().split()))
+ans = float('inf') 
+li.sort()
+for i in range(n - k + 1):
+    diff=li[i+k-1]-li[i]
+    ans = min(ans,diff)
+
+print(ans)
+
+Palindrome String
+s=input()
+if s==s[::-1]:
+    print(1)
+else:
+    print(0)
+
+K-th Element of two Arrays
+n,m=map(int, input().split())
+l1=list(map(int, input().split()))
+l2=list(map(int, input().split()))
+l1=l1+l2
+l1.sort()
+k=int(input())
+print(l1[k-1])
+
+First element to occur k times
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int k=sc.nextInt();
+        Map<Integer, Integer> hm=new HashMap<>();
+        for(int ele : arr){
+            hm.put(ele, hm.getOrDefault(ele, 0)+1);
+            if(hm.get(ele)==k){
+                System.out.println(ele);
+                return ;
+            }
+        }
+        System.out.println(-1);
+    }
+}
+
+
+Choose wisely
+for _ in range(int(input())):
+    n, m = map(int, input().split())
+    max_points = max(1500-n*2-4*(n+m), 1500-4*m-2*(m+n))
+    print(max_points)
+
+
+Non Repeating Numbers
+n=int(input())
+l=list(map(int, input().split()))
+ans=[]
+for i in l:
+    if l.count(i)==1:
+        ans.append(i)
+ans.sort()
+print(*ans)
+
+
+Finding the First Occurrence of a Substring
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s=sc.nextLine();
+        String st=sc.nextLine();
+        System.out.println(s.indexOf(st));
+
+    }
+
+}
+
+
+valid string
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.next();
+        
+        Map<Character, Integer> charCount = new HashMap<>();
+        
+        for (char c : s.toCharArray()) {
+            charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+        }
+        
+        Map<Integer, Integer> freqCount = new HashMap<>();
+        
+        for (int count : charCount.values()) {
+            freqCount.put(count, freqCount.getOrDefault(count, 0) + 1);
+        }
+        
+        if (freqCount.size() == 1 || (freqCount.size() == 2 && freqCount.containsValue(1))) {
+            System.out.println("Valid String");
+        } else {
+            System.out.println("Not Valid");
+        }
+    }
+}
+
+Product array puzzle
+n=int(input())
+l=list(map(int, input().split()))
+for i in range(n):
+    p=1
+    for j in range(n):
+        if i!=j:
+            p *=l[j]
+    print(p, end=" ")
+
+
+second most frequent character
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        HashMap<Character, Integer> hm=new HashMap<>();
+        for(char ch : s.toCharArray())hm.put(ch, hm.getOrDefault(ch, 0)+1);
+        int maxCount=-1;
+        int secountMax=-1;
+        char firstChar ='0';
+        char secountChar ='0';
+
+        for(Map.Entry<Character, Integer> entry : hm.entrySet()){
+            int value=entry.getValue();
+            char ch=entry.getKey();
+            if(value > maxCount){
+                secountMax=maxCount;
+                maxCount=value;
+                secountChar=firstChar;
+                firstChar=ch;
+            }
+            else if( value>secountMax && value!=maxCount){
+                secountMax=value;
+                secountChar=ch;
+            }
+        }
+        System.out.print(secountChar=='0'? "-1" : secountChar);
+    }
+}
+    
+
+
+Sorting Frequency
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Integer[] arr = new Integer[n];
+
+        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+            frequencyMap.put(arr[i], frequencyMap.getOrDefault(arr[i], 0) + 1);
+        }
+
+        Comparator<Integer> customComparator = (num1, num2) -> {
+            int freqComparison = frequencyMap.get(num2).compareTo(frequencyMap.get(num1));
+            if (freqComparison == 0) {
+                return num1.compareTo(num2);
+            }
+            return freqComparison;
+        };
+
+        Arrays.sort(arr, customComparator);
+         LinkedHashSet<Integer> set = new LinkedHashSet<>(Arrays.asList(arr));
+         for( int ele : set)
+            System.out.print(ele+" ");
+
+        
+    }
+}
+
+Count number of ways to cover a distance
+def rec(n):
+    if n==0:
+        return 0
+    if n==1:
+        return 1
+    if n==2:
+        return 2
+    if n==3:
+        return 4
+    return rec(n-1)+rec(n-2)+rec(n-3)
+n=int(input())
+print(rec(n))
+
+String Protocol
+for _ in range(int(input())):
+    n=int(input())
+    s=input()
+    c=i=0
+    while i<n:
+        if i<n-1 and s[i]==s[i+1]:
+            c +=1
+            i +=2
+        else:
+            c +=1
+            i +=1
+    print(c) 
+
+
+Program to find the Number of Integers with Exactly 9 Divisors
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        
+        int count = 0;
+        
+        for (int i = 1; i <= N; i++) {
+            if (countDivisors(i) == 9) {
+                count++;
+                System.out.print(i+" ");
+            }
+        }
+        System.out.println();
+        System.out.println("Total=" + count);
+    }
+    
+    public static int countDivisors(int num) {
+        int count = 0;
+        for (int i=1;i<=num;i++) {
+            if (num % i == 0) {
+               count++;
+            }
+        }
+        return count;
+        }
+}
+
+Excel Mapping
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        StringBuilder sb=new StringBuilder();
+        while(n>0){
+            int rem=n%26;
+            sb.append((char) (64 + rem));
+            n/=26;
+        }
+        System.out.println(sb.reverse().toString());
+    }
+}
+
+Bombs Drop
+for _ in range(int(input())):
+    n,k=map(int, input().split())
+    l=list(map(int, input().split()))
+    i=n-1
+    while(i>=0):
+        if(k>l[i]):
+            break
+        i -=1
+    print(i+1)
+
+
+Find Possible GCD
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0){
+            int a=sc.nextInt();
+            int b=sc.nextInt();
+            Set<Integer> set=new HashSet<>();
+            for(int i=0;i<1000;i++){
+                set.add(gcd(a+i, b+i));
+            }
+            System.out.println(set.size());
+        }
+    }
+    public static int gcd(int a, int b){
+        if(b==0)
+            return a;
+        return gcd(b, a%b);
+    }
+}
+
+
+Sorting the array
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] a = new int[n];
+        int[] sortedArray = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+            sortedArray[i] = a[i];
+        }
+        Arrays.sort(sortedArray);
+        int left = 0;
+        int right = n - 1;
+
+        while (left < n && a[left] == sortedArray[left]) {
+            left++;
+        }
+
+        while (right >= 0 && a[right] == sortedArray[right]) {
+            right--;
+        }
+
+        if (left >= right) {
+            System.out.println("YES");
+            System.out.println("1 1");
+        } else {
+            int start = left + 1;
+            int end = right + 1;
+
+            for (int i = left; i <= right; i++) {
+                if (a[i] != sortedArray[right - (i - left)]) {
+                    System.out.println("NO");
+                    return;
+                }
+            }
+
+            System.out.println("YES");
+            System.out.println(start + " " + end);
+        }
+    }
+}
+
+Team Selection
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int k=sc.nextInt();
+        int[] arr=new int[n];
+        int Teamsize=0,max=0;
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+            if(arr[i]+k<=5){
+                Teamsize++;
+            }
+            if(Teamsize==3){
+                max++;
+                Teamsize=0;
+            }
+        }
+        System.out.println(max);
+    }
+}
+
+
+Predict the Winner in Coin Game
+a,b=map(int, input().split())
+if a%2==0 or b%2==0:
+    print('Player 1')
+else:
+    print("Player 2")
+
+
+Help Jarvis!
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        sc.nextLine();
+        while(t-->0){
+            String s=sc.nextLine();
+            if(fun(s))System.out.println("YES");
+            else System.out.println("NO");
+        }
+    }
+    public static boolean fun(String s){
+        char[] arr=s.toCharArray();
+        Arrays.sort(arr);
+        for(int i=0;i<arr.length-1;i++){
+            if((arr[i+1]-arr[i])!=1)
+                return false;
+        }
+        return true;
+    }
+}
+
+Multiply Strings
+s,s1=map(str,input().split())
+print(int(s) * int(s1))
+
+
+Predict the Winner
+
+n = int(input())
+li = list(map(int, input().split()))
+s=sum(li)
+if s%4==0:
+    print("X")
+else:
+    print("Y")
+
+
+Valid Parentheses
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        Stack<Character> st=new Stack<>();
+        for(char ch : s.toCharArray()){
+            if(ch=='(')st.push(')');
+            else if(ch=='{')st.push('}');
+            else if(ch=='[') st.push(']');
+            else{
+                if(st.isEmpty() || st.pop()!=ch){
+                    System.out.print("False");
+                    return ;
+                }
+            }
+        }
+        if(st.isEmpty())System.out.println("True");
+        else System.out.println("False");
+    }
+}
+
+
+Third Maximum Number
+
+import java.util.*;
+
+public class ThirdMax {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        Arrays.sort(arr);
+        LinkedHashSet<Integer> set = new LinkedHashSet<>();
+
+        for (int i = n - 1; i >= 0; i--) {
+            set.add(arr[i]);
+            if (set.size() == 3) {
+                System.out.println(arr[i]);
+                return;
+            }
+        }
+
+        System.out.println(arr[n - 1]); 
+    }
+}
+
+
+Product of Array Except Self
+n=int(input())
+l=list(map(int, input().split()))
+for i in range(n):
+    p=1
+    for j in range(n):
+        if i!=j:
+            p *=l[j]
+    print(p, end=" ")
+
+
+Replace Elements with Greatest Element on Right Side
+n=int(input())
+l=list(map(int, input().split()))
+ma=l[n-1]
+l[n-1]=-1
+for i in range(n-2,-1,-1):
+    temp=l[i]
+    l[i]=ma
+    ma=max(ma,temp)
+print(*l)
+
+
+
+Last Occurrence
+
+N, M = map(int, input().split())
+arr = list(map(int, input().split()))
+ans = -1
+for i in range(N - 1, -1, -1):
+    if arr[i] == M:
+        ans = i
+        break
+if ans == -1:
+    print(-1)
+else:
+    print(ans + 1)
+
+
+
+RainDrop
+n=int(input())
+if n%3==0 and n%5==0 and n%7==0:
+    print('PlingPlangPlong')
+elif n%3==0 and n%5==0:
+    print('PlingPlang')
+elif n%3==0:
+    print('Pling')
+elif n%5==0 and n%7==0:
+    print('PlangPlong')
+elif n%5==0:
+    print('Plang')
+elif n%7==0:
+    print('Plong')
+else:
+    print(n)
+
+
+Maximum element in each column
+
+
+rows, cols = map(int, input().split())
+matrix = []
+for _ in range(rows):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+max_in_columns = [0] * cols
+for col in range(cols):
+    for row in range(rows):
+        max_in_columns[col] = max(max_in_columns[col], matrix[row][col])
+for col in max_in_columns:
+    print(col)
+
+
+
+Speed
+def count_max_speed_cars(N, speeds):
+    count = 1 
+    max_speed = speeds[0]  
+    for i in range(1, N):
+        if speeds[i] <= max_speed:
+            count += 1
+            max_speed = speeds[i]
+
+    return count
+T = int(input())
+for _ in range(T):
+    N = int(input()) 
+    speeds = list(map(int, input().split()))
+    result = count_max_speed_cars(N, speeds)
+    print(result)
+
+Decompress Run-Length Encoded List
+
+
+N = int(input())
+nums = list(map(int, input().split()))
+for i in range(0, N, 2):
+    freq = nums[i]
+    val = nums[i + 1]
+    for j in range(freq):
+        print(val,end=" ")
+
+
+
+M-Countdown Array
+def fun(l, k):
+    c=0
+    curr=k
+    for num in l:
+        if num==curr:
+            curr -=1
+            if curr==0:
+                c +=1
+                curr=k
+    return c
+for _ in range(int(input())):
+    n,k=map(int, input().split())
+    l=list(map(int, input().split()))
+    print(fun(l,k))
+
+
+Shuffle the Array
+li=list(map(int, input().split()))
+n=int(input())
+part1=li[:n]
+part2=li[n:]
+ans=[]
+for i in range(n):
+    ans.append(part1[i])
+    ans.append(part2[i])
+print(*ans)
+
+
+Viral Advertising
+def viralAdvertising(n):
+    shared = 5  
+    cumulative_liked = 0  
+    
+    for day in range(1, n + 1):
+        liked = shared // 2 
+        cumulative_liked += liked
+        shared = liked * 3 
+        
+    return cumulative_liked
+n = int(input())
+result = viralAdvertising(n)
+print(result)
+
+
+
+Kangaroo
+def kangaroo(x1, v1, x2, v2):
+    if x1 == x2 and v1 == v2:
+        return "YES"
+    if x1 != x2 and v1 == v2:
+        return "NO"
+    if (x1 - x2) % (v2 - v1) == 0 and (x1 - x2) / (v2 - v1) >= 0:
+        return "YES"
+    
+    return "NO"
+x1, v1, x2, v2 = map(int, input().split())
+result = kangaroo(x1, v1, x2, v2)
+print(result)
+
+
+
+calculate_prime_factors
+def calculate_prime_factors(number):
+    factors = []
+    divisor = 2
+
+    while divisor <= number:
+        if number % divisor == 0:
+            factors.append(divisor)
+            number = number / divisor
+        else:
+            divisor += 1
+
+    return factors
+
+number = int(input())
+print(*calculate_prime_factors(number))
+
+
+Palindrome and Rotation
+N, A, B = map(int, input().split())
+S = input()
+l = len(S)
+T = S + S         
+ans = 10**100
+for i in range(l):
+    now = A*i
+    now_2=0
+    hazi = l+i
+    for j in range(l):
+        if T[i+j] != T[l+i-j-1]:
+            now_2 +=B
+    ans = min(ans, now+(now_2//2))
+print(ans)
+
+Find Common Divisors
+def find_common_divisors(n1, n2):
+    divisors = []
+    for i in range(1, min(n1, n2) + 1):
+        if n1 % i == 0 and n2 % i == 0:
+            divisors.append(i)
+    return divisors
+
+n1, n2 = map(int, input().split())
+
+result = find_common_divisors(n1, n2)
+
+for divisor in result:
+    print(divisor, end=" ")
+
+
+
+Even odd Series
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        List<Long> a = new ArrayList<>();
+        List<Long> b = new ArrayList<>();
+
+        a.add(2L);
+        b.add(0L);
+        b.add(1L);
+
+        for (int i = 0; i < 1000; i++) {
+            a.add(a.get(a.size() - 1) * 2);
+            b.add(b.get(b.size() - 1) * 3);
+        }
+
+        int i = 0;
+        for (i = 0; i < (n + 1) / 2; i++) {
+            System.out.print(a.get(i) + " " + b.get(i) + " ");
+        }
+
+        if (n % 2 == 0) {
+            System.out.print(a.get(i));
+        }
+    }
+}
+
+Count Sorted Columns in a Matrix
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int m = scanner.nextInt();
+        int n = scanner.nextInt();
+        int ans = 0;
+        
+        int[][] v = new int[m][n];
+
+        for (int i = 0; i < m; i++) {
+            int maxi = Integer.MIN_VALUE;
+            int c1 = 0;
+            int mini = Integer.MAX_VALUE;
+            int c2 = 0;
+            for (int j = 0; j < n; j++) {
+                v[i][j] = scanner.nextInt();
+                if (v[i][j] >= maxi) {
+                    maxi = v[i][j];
+                    c1++;
+                }
+                if (v[i][j] <= mini) {
+                    mini = v[i][j];
+                    c2++;
+                }
+            }
+            if (c1 == n || c2 == n) {
+                ans++;
+            }
+        }
+        
+        System.out.println(ans);
+    }
+}
+
+
+Check for Leap Year
+def is_leap_year(year):
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+year = int(input())
+result = is_leap_year(year)
+print(result)
+
+
+Sankar and Maths
+n=int(input())
+if n%2==0:
+    print(int(n/2))
+else:
+    print(int(n/2)+1)
+
+
+Calculate the Average of Numbers
+li=list(map(int, input().split()))
+s=sum(li)
+print(f"{s/len(li):.2f}")
+
+
+
+Check for Anagrams
+def Anagrams(s1, s2):
+    s1 = s1.lower()  
+    s2 = s2.lower() 
+    if len(s1) != len(s2):
+        return False
+    for char in s1:
+        if s1.count(char) != s2.count(char):
+            return False
+    return True
+s1 = input()
+s2 = input()
+print(Anagrams(s1, s2))
+
+
+Calculate the Hypotenuse of a Right Triangle
+import math
+a,b=map(int, input().split())
+ans=pow(a*a+b*b, 0.5)
+print(f"{ans:0.2f}")
+
+
+Find the Maximum in a String
+s=input()
+print(max(s))
+
+
+General's Arrival
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+
+        int[] a = new int[n + 1];
+        int minS = 110, maxS = 0, imin = 0, imax = 0;
+
+        for (int i = 1; i <= n; i++) {
+            a[i] = scanner.nextInt();
+        }
+
+        for (int i = 1; i <= n; i++) {
+            if (a[i] > maxS) {
+                maxS = a[i];
+                imax = i;
+            }
+        }
+
+        for (int i = n; i >= 1; i--) {
+            if (a[i] < minS) {
+                minS = a[i];
+                imin = i;
+            }
+        }
+
+        int ans = imax - 1 + n - imin;
+
+        if (imax > imin) {
+            System.out.println(ans - 1);
+        } else {
+            System.out.println(ans);
+        }
+    }
+}
+
+
+Batsman Average
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    float a;
+    int t;
+    cin >> a >> t;
+
+    int rs = 0, os = 0;
+
+    while (t-- != 0) {
+        int r, o, b;
+        cin >> r >> o >> b;
+        rs += r;
+
+        if (o == 0) {
+            os++;
+        }
+    }
+
+    float na = static_cast<float>(rs) / os;
+    float ca = (na + a) / 2;
+
+    cout << fixed << setprecision(2) << ca << endl;
+
+    if (ca > a) {
+        cout << "True";
+    } else {
+        cout << "False";
+    }
+
+    return 0;
+}
+
+
+Calculate the GCD of Multiple Numbers
+import math
+from functools import reduce
+li=list(map(int, input().split()))
+ans=reduce(math.gcd,li)
+print(ans)
+
+
+Find the LCM of Multiple Numbers
+import math
+from functools import reduce
+li=list(map(int,input().split()))
+ans=reduce(math.lcm, li)
+print(ans)
+
+
+Check for a Strong Number
+import math
+
+def factorial(n):
+    return math.factorial(n)
+
+def is_strong_number(num):
+    original_num = num
+    digit_sum = 0
+
+    while num > 0:
+        digit = num % 10
+        digit_sum += factorial(digit)
+        num //= 10
+
+    return digit_sum == original_num
+num = int(input())
+print(is_strong_number(num))
+
+
+Merge Two Sorted Lists
+def merge_sorted_lists(l1, l2):
+    merged_list = []
+    i, j = 0, 0
+
+    while i < len(l1) and j < len(l2):
+        if l1[i] < l2[j]:
+            merged_list.append(l1[i])
+            i += 1
+        else:
+            merged_list.append(l2[j])
+            j += 1
+
+    merged_list.extend(l1[i:])
+    merged_list.extend(l2[j:])
+
+    return merged_list
+
+l1 = list(map(int, input().split()))
+l2 = list(map(int, input().split()))
+
+result = merge_sorted_lists(l1, l2)
+
+print(" ".join(map(str, result)))
+
+
+.Miximum Value
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    for (int i=0; i<n; i++) {
+        char str[200001];
+        scanf("%s", str);
+        int l, z=0;
+        for (l=0; l<200001; l++) {
+            if (str[l]=='\0') break;
+            if (str[l]=='0') z++;
+        }
+        int min = (z < l-z)? z : l-z;
+        if (min*2 == l)
+            printf("%d\n", min-1);
+        else
+            printf("%d\n", min);
+    }
+    return 0;
+}
+
+
+Possible permutations
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+
+    int t;
+    cin>>t;
+
+    while(t--){
+        int n,a,b;cin>>n>>a>>b;
+        if((n==a)&&(n==b)){
+            cout<<"Yes"<<endl;
+        }else{
+            n-=a+b;
+            
+            if((n>1)){
+                cout<<"Yes"<<endl;
+            }else{
+                cout<<"No"<<endl;
+            }
+        }
+    }
+
+    return 0;
+}
+
+
+
+
+Student Arrangement
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define lli long long int
+
+int main(){
+
+    ios_base::sync_with_stdio(0);
+
+    cin.tie(0);
+
+    int n,m,k;cin>>n>>m>>k;
+
+    set<int>set;
+
+    int A[200010],f[200010];
+
+    for(int i = 0; i<n; i++)cin>>A[i];
+
+    for(int i = 1; i<=m; i++)set.insert(i);
+
+    lli sum = 0;
+
+    for(int i = 0; i<n; i++){
+
+        if(set.empty()){
+
+            sum+=(n-i);
+
+            break;
+
+        }
+
+        auto it = set.lower_bound(A[i]);
+
+        if(it==set.end())it = set.begin();
+
+        if(*it!=A[i])sum++;
+
+        f[*it]++;
+
+        if(f[*it]==k)set.erase(it);
+
+    }
+
+    cout<<sum<<endl;
+
+    return 0;
+
+}
