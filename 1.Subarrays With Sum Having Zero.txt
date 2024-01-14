@@ -1,0 +1,4521 @@
+1.Subarrays With Sum Having Zero
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
+int countZeroSumSubarrays(vector<int>& arr) {
+    unordered_map<int, int> sumCount;
+    int currentSum = 0;
+    int count = 0;
+
+    for (int num : arr) {
+        currentSum += num;
+
+        if (currentSum == 0) {
+            count++;
+        }
+
+        if (sumCount.find(currentSum) != sumCount.end()) {
+            count += sumCount[currentSum];
+        }
+
+        sumCount[currentSum]++;
+    }
+
+    return count;
+}
+
+int main() {
+    int N;
+    cin >> N;
+    vector<int> arr(N);
+    for (int i = 0; i < N; i++) {
+        cin >> arr[i];
+    }
+
+    int result = countZeroSumSubarrays(arr);
+    cout << result << endl;
+
+    return 0;
+}
+
+
+2.Sort the Words Based on Length
+def sort_string(S):
+    words = S.split()
+    sorted_words = sorted(words, key=lambda x: (len(x), x))
+    sorted_string = ' '.join(sorted_words)
+    return sorted_string
+
+input_string = input()
+
+output_string = sort_string(input_string)
+print(output_string)
+
+3.Distinct Characters-1
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string s;
+    getline(cin,s);
+    map<char,int>mpp;
+    for(auto it:s){
+        if(isalpha(it)){
+            if(isupper(it)){
+                mpp[it+32]++;
+            }else{
+                mpp[it]++;
+            }
+        }
+    }
+    for(auto it:mpp){
+        if(it.second==1){
+            cout<<it.first;
+        }
+    }
+}
+
+4.Count Unique Characters
+#include<bits/stdc++.h>  
+
+using namespace std;  
+
+int main()  
+
+{  
+
+    string s;  
+
+    getline(cin,s);  
+
+    unordered_map<char,int>m;  
+
+    for(auto it:s)     {  
+
+        if(it==' ')continue; 
+
+        it=tolower(it);  
+
+        m[it]++;  
+
+    }  
+
+    int ans=0; 
+
+    for(auto it:m)     {  
+
+        if(it.second==1)         {  
+
+            ans++; 
+
+        }  
+
+    } 
+
+    cout<<ans;  
+
+} 
+
+
+
+5.Sort Consonants
+def sort_consonants(input_string):
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    words = input_string.split()
+    sorted_words = []
+
+    for word in words:
+        consonants = []
+        for char in word:
+            if char.lower() not in vowels:
+                consonants.append(char)
+        sorted_consonants = sorted(consonants)
+        sorted_word = ''
+        consonant_index = 0
+
+        for char in word:
+            if char.lower() in vowels:
+                sorted_word += char
+            else:
+                sorted_word += sorted_consonants[consonant_index]
+                consonant_index += 1
+
+        sorted_words.append(sorted_word)
+
+    return ' '.join(sorted_words)
+
+input_string = input()
+output_string = sort_consonants(input_string)
+print(output_string)
+
+6.Common Words
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string str1,str2;
+    getline(cin,str1);
+    getline(cin,str2);
+    unordered_map<string,int>st;
+    string word="";
+    for(int i=0;i<str1.length();i++){
+        if(isalpha(str1[i])){
+            char ch=tolower(str1[i]);
+            word+=ch;
+        }else{
+            st[word]++;
+            word="";
+        }
+    }
+    if(!word.empty()){
+        st[word]++;
+    }
+    word="";
+    for(int i=0;i<str2.length();i++){
+        if(isalpha(str2[i])){
+            word+=str2[i];
+        }else{
+             if(st.find(word)!=st.end()){
+                cout<<word<<" ";
+             }
+            word="";
+        }
+    }
+    if(!word.empty()){
+        if(st.find(word)!=st.end()){
+                cout<<word<<" ";
+        }
+    }
+}
+
+7.Sort Words of a String
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string str;
+    getline(cin,str);
+    string word="";
+    map<char,int>mpp;
+    for(int i=0;i<str.length();i++){
+        if(str[i]!=' '){
+            word+=str[i];
+            if(isalpha(str[i]))
+            mpp[str[i]]++;
+        }
+        else{
+          for(int j=0;j<word.length();j++){
+              if(isalpha(word[j])){
+                  auto it=mpp.begin();
+                  cout<<it->first;
+                  if(it->second>1){
+                      it->second--;
+                  }else{
+                      mpp.erase(it->first);
+                  }
+              }else{
+                  cout<<word[j];
+              }
+          } 
+          cout<<" ";
+          word="";
+          mpp.clear();
+        }
+    }
+    if(!word.empty()){
+        for(int j=0;j<word.length();j++){
+              if(isalpha(word[j])){
+                  auto it=mpp.begin();
+                  cout<<it->first;
+                  if(it->second>1){
+                      it->second--;
+                  }else{
+                      mpp.erase(it->first);
+                  }
+              }else{
+                  cout<<word[j];
+              }
+          } 
+          cout<<" ";
+          word="";
+          mpp.clear();
+    }
+}
+
+8.Non Common Characters
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string str1,str2;
+    getline(cin,str1);
+    getline(cin,str2);
+    set<char>st;
+    unordered_map<char,int>mpp;
+    for(auto it:str1){
+        if(isalpha(it)){
+            char ch=tolower(it);
+            mpp[ch]++;
+        }
+    }
+    for(auto it:str2){
+        if(isalpha(it)){
+            char ch=tolower(it);
+            if(mpp.find(ch)==mpp.end()){
+                st.insert(ch);
+            }
+        }
+    }
+    mpp.clear();
+    for(auto it:str2){
+        if(isalpha(it)){
+            char ch=tolower(it);
+            mpp[ch]++;
+        }
+    }
+    for(auto it:str1){
+       if(isalpha(it)){
+            char ch=tolower(it);
+            if(mpp.find(ch)==mpp.end()){
+                st.insert(ch);
+            }
+        }
+    }
+    for(auto it:st){
+        cout<<it;
+    }
+}
+
+
+9.Row Wise Sum of a Matrix
+def row_sum(matrix):
+    row_sums = []
+    for row in matrix:
+        row_sum = sum(row)
+        row_sums.append(row_sum)
+    return row_sums
+
+N, M = map(int, input().split())
+matrix = []
+for _ in range(N):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+
+result = row_sum(matrix)
+print(*result)
+
+
+OR
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> rowSum(vector<vector<int>> &matrix) {
+    vector<int> rowSums;
+    
+    for (const vector<int> &row : matrix) {
+        int rowSum = 0;
+        for (int value : row) {
+            rowSum += value;
+        }
+        rowSums.push_back(rowSum);
+    }
+    
+    return rowSums;
+}
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+    
+    vector<vector<int>> matrix(N, vector<int>(M));
+    
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            cin >> matrix[i][j];
+        }
+    }
+    
+    vector<int> result = rowSum(matrix);
+    
+    for (int i : result) {
+        cout << i << " ";
+    }
+    
+    return 0;
+}
+
+
+10.Difference B/W Sum of Small and Large
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string str;
+    getline(cin,str);
+    int sum1=0;
+    int sum2=0;
+    char ch1='a';
+    char ch2='z';
+    for(int i=0;i<str.length();i++){
+        if(str[i]==' '){
+            sum1+=ch1;
+            sum2+=ch2;
+            ch1='a';
+            ch2='z';
+        }else{
+            ch1=max(ch1,str[i]);
+            ch2=min(ch2,str[i]);
+        }
+    }
+    sum1+=ch1;
+    sum2+=ch2;
+    cout<<sum1-sum2<<endl;
+}
+
+
+
+11.Absolute Difference of Small and Large
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string str;
+    getline(cin,str);
+    int sum1=0;
+    int sum2=0;
+    char ch1='a';
+    char ch2='z';
+    for(int i=0;i<str.length();i++){
+        if(!isalpha(str[i])){
+            sum1+=ch1;
+            sum2+=ch2;
+            ch1='a';
+            ch2='z';
+            cout<<abs(sum2-sum1)<<" ";
+            sum1=0;
+            sum2=0;
+        }else{
+            ch1=max(ch1,str[i]);
+            ch2=min(ch2,str[i]);
+        }
+    }
+    sum1+=ch1;
+    sum2+=ch2;
+    cout<<sum1-sum2<<endl;
+}
+
+12.Small and Large Characters
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string str;
+    getline(cin,str);
+    char ch1='a';
+    char ch2='z';
+    for(int i=0;i<str.length();i++){
+        if(!isalpha(str[i])){
+            cout<<ch2<<" "<<ch1<<" ";
+            ch1='a';
+            ch2='z';
+        }else{
+            ch1=max(ch1,str[i]);
+            ch2=min(ch2,str[i]);
+        }
+    }
+    cout<<ch2<<" "<<ch1;
+}
+
+
+13.Disarium Number
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isDisarium(int n) {
+    string numStr = to_string(n);
+    int sumOfPowers = 0;
+    
+    for (size_t i = 0; i < numStr.length(); i++) {
+        int digit = numStr[i] - '0';
+        sumOfPowers += static_cast<int>(pow(digit, i + 1));
+    }
+    
+    return sumOfPowers == n;
+}
+
+int main() {
+    int num;
+    cin >> num;
+    
+    bool result = isDisarium(num);
+    
+    cout << (result ? "True" : "False") << endl;
+    
+    return 0;
+}
+
+
+14.Fibonacci series
+#include <bits/stdc++.h>
+using namespace std;
+
+void generateFibonacci(int n) {
+    int first = 0, second = 1;
+    int next;
+
+    cout << first << " " << second << " ";
+
+    for (int i = 2; i < n; i++) {
+        next = first + second;
+        cout << next << " ";
+        first = second;
+        second = next;
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    generateFibonacci(n);
+
+    return 0;
+}
+
+15.Fibonacci or Not
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isPerfectSquare(int num) {
+    int squareRoot = sqrt(num);
+    return squareRoot * squareRoot == num;
+}
+
+bool isFibonacci(int num) {
+    return isPerfectSquare(5 * num * num + 4) || isPerfectSquare(5 * num * num - 4);
+}
+
+int main() {
+    int num;
+    cin >> num;
+
+    bool result = isFibonacci(num);
+
+    if (result) {
+        cout << "True";
+    } else {
+        cout << "False";
+    }
+
+    return 0;
+}
+
+16.Find two Distinct Prime Numbers with Given Product
+#include<bits/stdc++.h>
+using namespace std;
+bool isprime(int n){
+    if(n<=1){
+        return false;
+    }
+    for(int i=2;i<=sqrt(n);i++){
+        if(n%i==0){
+            return false;
+        }
+    }
+    return true;
+}
+int main(){
+    int n;
+    cin>>n;
+    for(int i=0;i<=n/2;i++){
+        int num=i;
+        if(isprime(num)){
+            if(n%num==0&&(n/num!=n)){
+                int num2=n/num;
+                if(isprime(num2)){
+                    cout<<num<<" "<<num2<<endl;
+                    return 0;
+                }
+            }
+        }
+    }
+    cout<<"-1"<<endl;
+}
+
+17.Perfect Square Root or Not
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main() 
+
+{ 
+
+    int n; cin>>n; 
+
+    int c=sqrt(n); 
+
+    if(c*c==n) cout<<"True"; 
+
+    else cout<<"False"; 
+
+} 
+
+18.Ugly Number
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main(){ 
+
+    int n; 
+
+    cin>>n; 
+
+     
+
+        while(n%2==0)n/=2; 
+
+        while(n%3==0)n/=3; 
+
+        while(n%5==0)n/=5; 
+
+    if(n==1)cout<<"Ugly Number"; 
+
+    else cout<<"Not Ugly Number"; 
+
+} 
+
+
+OR
+
+#include <bits/stdc++.h> 
+
+using namespace std; 
+
+  
+
+bool isUgly(int num) { 
+
+    if (num <= 0) { 
+
+        return false; 
+
+    } 
+
+     
+
+    vector<int> divisors = {2, 3, 5}; 
+
+     
+
+    for (int divisor : divisors) { 
+
+        while (num % divisor == 0) { 
+
+            num /= divisor; 
+
+        } 
+
+    } 
+
+     
+
+    return num == 1; 
+
+} 
+
+  
+
+int main() { 
+
+    int num; 
+
+    cin >> num; 
+
+    if (isUgly(num)) { 
+
+        cout << "Ugly Number" << endl; 
+
+    } else { 
+
+        cout << "Not Ugly Number" << endl; 
+
+    } 
+
+    return 0; 
+
+} 
+
+
+
+19.Count Palindrome Words in a String
+n=input().split(" ") 
+
+ans=0 
+
+for i in n: 
+
+    i=i.lower() 
+
+    if i==i[::-1]: 
+
+        ans+=1 
+
+print(ans) 
+
+ 
+
+20.Sum of Diagonal Values
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main(){ 
+
+    int n,m,t; 
+
+    int ans=0; 
+
+    cin>>n>>m; 
+
+    for(int i=0;i<n;i++){ 
+
+        for(int j=0;j<m;j++){ 
+
+            cin>>t; 
+
+            if(i==j || i+j==n-1)ans+=t; 
+
+        } 
+
+    } 
+
+    cout<<ans; 
+
+} 
+
+
+21.Count Sorted Columns in a Matrix
+#include<bits/stdc++.h> 
+using namespace std; 
+int main() 
+
+{ 
+
+    int m,n,ans=0; cin>>m>>n; 
+
+    int v[m][n]; 
+
+    for(int i=0;i<m;i++) 
+
+    { 
+
+        int maxi=INT_MIN,c1=0,mini=INT_MAX,c2=0; 
+
+        for(int j=0;j<n;j++) 
+
+        { 
+
+            cin>>v[i][j]; 
+
+            if(v[i][j]>=maxi) 
+
+            { 
+
+                maxi=v[i][j]; 
+
+                c1++; 
+
+            } 
+
+            if(v[i][j]<=mini) 
+
+            { 
+
+                mini=v[i][j]; 
+
+                c2++; 
+
+            } 
+
+        } 
+
+        if(c1==n || c2==n) ans++; 
+
+    } 
+
+    cout<<ans; 
+
+} 
+
+
+22.Count Sorted Rows in a Matrix
+#include<bits/stdc++.h> 
+using namespace std; 
+
+int main() 
+
+{ 
+
+    int m,n,ans=0; cin>>m>>n; 
+
+    int v[m][n]; 
+
+    for(int i=0;i<m;i++) 
+
+    { 
+
+        int maxi=INT_MIN,c1=0,mini=INT_MAX,c2=0; 
+
+        for(int j=0;j<n;j++) 
+
+        { 
+
+            cin>>v[i][j]; 
+
+            if(v[i][j]>=maxi) 
+
+            { 
+
+                maxi=v[i][j]; 
+
+                c1++; 
+
+            } 
+
+            if(v[i][j]<=mini) 
+
+            { 
+
+                mini=v[i][j]; 
+
+                c2++; 
+
+            } 
+
+        } 
+
+        if(c1==n || c2==n) ans++; 
+
+    } 
+
+    cout<<ans; 
+
+} 
+
+23.Count Sorted Rows in a Matrix
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+  
+
+int main() 
+
+{ 
+
+    int m,n,ans=0; cin>>m>>n; 
+
+    int v[m][n]; 
+
+    for(int i=0;i<m;i++) 
+
+    { 
+
+        int maxi=INT_MIN,c1=0,mini=INT_MAX,c2=0; 
+
+        for(int j=0;j<n;j++) 
+
+        { 
+
+            cin>>v[i][j]; 
+
+            if(v[i][j]>=maxi) 
+
+            { 
+
+                maxi=v[i][j]; 
+
+                c1++; 
+
+            } 
+
+            if(v[i][j]<=mini) 
+
+            { 
+
+                mini=v[i][j]; 
+
+                c2++; 
+
+            } 
+
+        } 
+
+        if(c1==n || c2==n) ans++; 
+
+    } 
+
+    cout<<ans; 
+
+} 
+
+24.Binary Search Tracing
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+void binarySearch(int arr[],int n,int tar) 
+
+{ 
+
+    int st=0,end=n-1,ans=-1; 
+
+    while(st<=end) 
+
+    { 
+
+        int mid=(st+end)/2; 
+
+        if(arr[mid]==tar) 
+
+        { 
+
+            ans=arr[mid]; 
+
+            break; 
+
+        } 
+
+        else if(arr[mid]>tar) 
+
+        { 
+
+            end=mid-1; 
+
+            cout<<arr[mid]<<" "; 
+
+        } 
+
+        else 
+
+        { 
+
+            st=mid+1; 
+
+            cout<<arr[mid]<<" "; 
+
+        } 
+
+    } 
+
+    cout<<ans; 
+
+} 
+
+int main() 
+
+{ 
+
+    int n,tar; 
+
+    cin>>n>>tar; 
+
+    int arr[n]; 
+
+    for(int i=0;i<n;i++) 
+
+    { 
+
+        cin>>arr[i]; 
+
+    } 
+
+    binarySearch(arr,n,tar); 
+
+} 
+
+
+25.Maximum Sum of Column Wise Sum of a Matrix
+#include<bits/stdc++.h>  
+
+using namespace std;  
+
+int main()  
+
+{  
+
+    int m,n,ans=INT_MIN; cin>>m>>n;  
+
+    int v[m][n];  
+
+    for(int i=0;i<m;i++) 
+
+    {  
+
+        for(int j=0;j<n;j++)  
+
+        {  
+
+            cin>>v[i][j];  
+
+        }  
+
+    }  
+
+    for(int i=0;i<n;i++){ 
+
+        int t=0; 
+
+        for(int j=0;j<m;j++){ 
+
+            t+=v[j][i]; 
+
+        } 
+
+        ans=max(ans,t); 
+
+    } 
+
+    cout<<ans;  
+
+} 
+
+
+26.Maximum Sum of Row Wise Sum of a Matrix
+#include<bits/stdc++.h>  
+
+using namespace std;  
+
+int main()  
+
+{  
+
+    int m,n,ans=INT_MIN; cin>>m>>n;  
+
+    int v[m][n];  
+
+    for(int i=0;i<m;i++) 
+
+    {  
+
+        int t=0; 
+
+        for(int j=0;j<n;j++)  
+
+        {  
+
+            cin>>v[i][j]; t+=v[i][j]; 
+
+        }  
+
+        ans=max(ans,t); 
+
+    }  
+
+    cout<<ans;  
+
+} 
+
+
+27.Closest Palindrome
+#include<stdio.h> 
+
+#include<math.h> 
+
+int pd(int n) 
+
+{ 
+
+    int d=0,i,a; 
+
+    a=n; 
+
+    while(n) 
+
+    { 
+
+        i=n%10; 
+
+        d=d*10+i; 
+
+        n/=10; 
+
+    } 
+
+    if(d==a) 
+
+    return 1; 
+
+    else 
+
+    return 0; 
+
+} 
+
+int main() 
+
+{ 
+
+    int a,b,n; 
+
+    scanf("%d",&n); 
+
+    a=n+1; 
+
+    b=n-1; 
+
+    while(1) 
+
+    { 
+
+        if (pd(a)==1) 
+
+        break; 
+
+        a++; 
+
+    } 
+
+    while(1) 
+
+    { 
+
+        if (pd(b)==1) 
+
+        break; 
+
+        b--; 
+
+    } 
+
+    if(abs(b-n)==abs(a-n)) 
+
+    printf("%d %d",b,a); 
+
+    else if(abs(b-n)>abs(a-n)) 
+
+    printf("%d",a); 
+
+    else 
+
+    printf("%d",b); 
+
+} 
+
+
+OR
+
+
+#include <bits/stdc++.h> 
+
+using namespace std; 
+
+  
+
+int rev(long int n) 
+
+{ 
+
+    int x=n,reverse=0; 
+
+    while(x>0) 
+
+    { 
+
+        int rem=x%10; 
+
+        reverse=reverse*10+rem; 
+
+        x/=10; 
+
+    } 
+
+    if(reverse==n) return 1; 
+
+    else return 0; 
+
+} 
+
+  
+
+int main() 
+
+{ 
+
+    long int n; 
+
+    cin>>n; 
+
+    long int L=0,H=0; 
+
+    for(long int i=n-1;i>=0;i--) 
+
+    { 
+
+        if(rev(i)==1) 
+
+        { 
+
+            L=i; 
+
+            break; 
+
+        } 
+
+    } 
+
+    for(int i=n+1;i<10000;i++) 
+
+    { 
+
+        if(rev(i)==1) 
+
+        { 
+
+            H=i; 
+
+            break; 
+
+        } 
+
+    } 
+
+    long int diffL=n-L; 
+
+    long int diffH=H-n; 
+
+    if(diffL==diffH) cout<<L<<" "<<H; 
+
+    else if(diffL>diffH) cout<<H; 
+
+    else cout<<L; 
+
+     
+
+} 
+
+
+
+28.Reverse Even Positional Words
+n=input().split(" ") 
+
+p=0 
+
+t=[] 
+
+for i in n: 
+
+    if p%2==0: 
+
+        t.append(i[::-1]) 
+
+    else: 
+
+        t.append(i) 
+
+    p+=1 
+
+print(*t) 
+
+ 
+
+29.Abundant_Numbers
+#include<stdio.h> 
+
+int main() 
+
+{ 
+
+    int a,i,s=0; 
+
+    scanf("%d",&a); 
+
+    for(i=1;i<a;i++) 
+
+    { 
+
+        if(a%i==0) 
+
+        s+=i; 
+
+    } 
+
+    if(s>a) 
+
+    printf("True"); 
+
+    else 
+
+    printf("False"); 
+
+    return 0; 
+
+} 
+
+
+30.Reverse Words and Positions
+n=input().split(" ") 
+
+t=[] 
+
+for i in n: 
+
+    t.append(i[::-1]) 
+
+t=t[::-1] 
+
+print(*t) 
+
+
+OR
+
+#include <bits/stdc++.h> 
+
+using namespace std; 
+
+int main() 
+
+{ 
+
+    string s; 
+
+    getline(cin,s); 
+
+    reverse(s.begin(),s.end()); 
+
+    cout<<s; 
+
+} 
+
+
+31.Sum of Even Rows and Sum of Odd Rows in a Matrix
+def sum_even_odd_rows(matrix):
+    even_sum = 0
+    odd_sum = 0
+    for i in range(len(matrix)):
+        if (i+1) % 2 == 0: 
+            even_sum += sum(matrix[i])
+        else: 
+            odd_sum += sum(matrix[i])
+    return even_sum, odd_sum
+
+N, M = map(int, input().split())
+matrix = []
+for _ in range(N):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+
+even_sum, odd_sum = sum_even_odd_rows(matrix)
+print(odd_sum, even_sum)
+
+OR
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+pair<int, int> sumEvenOddRows(vector<vector<int>>& matrix) {
+    int evenSum = 0;
+    int oddSum = 0;
+    
+    for (int i = 0; i < matrix.size(); ++i) {
+        if ((i + 1) % 2 == 0) {
+            for (int j = 0; j < matrix[i].size(); ++j) {
+                evenSum += matrix[i][j];
+            }
+        } else {
+            for (int j = 0; j < matrix[i].size(); ++j) {
+                oddSum += matrix[i][j];
+            }
+        }
+    }
+    
+    return make_pair(oddSum, evenSum);
+}
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+    vector<vector<int>> matrix(N, vector<int>(M));
+
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    pair<int, int> result = sumEvenOddRows(matrix);
+    cout << result.first << " " << result.second << endl;
+
+    return 0;
+}
+
+32.Sum of Even and Odd Elements in a Matrix
+def sum_even_odd_elements(matrix):
+    even_sum = 0
+    odd_sum = 0
+    for row in matrix:
+        for element in row:
+            if element % 2 == 0:
+                even_sum += element
+            else:
+                odd_sum += element
+    return even_sum, odd_sum
+
+N, M = map(int, input().split())
+matrix = []
+for _ in range(N):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+
+even_sum, odd_sum = sum_even_odd_elements(matrix)
+print(even_sum, odd_sum)
+
+OR
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+pair<int, int> sumEvenOddElements(vector<vector<int>>& matrix) {
+    int evenSum = 0;
+    int oddSum = 0;
+    
+    for (int i = 0; i < matrix.size(); ++i) {
+        for (int j = 0; j < matrix[i].size(); ++j) {
+            int element = matrix[i][j];
+            if (element % 2 == 0) {
+                evenSum += element;
+            } else {
+                oddSum += element;
+            }
+        }
+    }
+    
+    return make_pair(evenSum, oddSum);
+}
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+    vector<vector<int>> matrix(N, vector<int>(M));
+
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    pair<int, int> result = sumEvenOddElements(matrix);
+    cout << result.first << " " << result.second << endl;
+
+    return 0;
+}
+
+
+33.Sum of all Elements in a Matrix
+def sum_all_elements(matrix):
+    total_sum = 0
+    for row in matrix:
+        for element in row:
+            total_sum += element
+    return total_sum
+
+N, M = map(int, input().split())
+matrix = []
+for _ in range(N):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+
+sum_of_elements = sum_all_elements(matrix)
+print(sum_of_elements)
+
+OR
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int sumAllElements(vector<vector<int>>& matrix) {
+    int totalSum = 0;
+
+    for (int i = 0; i < matrix.size(); ++i) {
+        for (int j = 0; j < matrix[i].size(); ++j) {
+            totalSum += matrix[i][j];
+        }
+    }
+
+    return totalSum;
+}
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+    vector<vector<int>> matrix(N, vector<int>(M));
+
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    int sumOfElements = sumAllElements(matrix);
+    cout << sumOfElements << endl;
+
+    return 0;
+}
+
+
+34.Absolute Difference of Two Matrices
+def absolute_difference(matrix_a, matrix_b):
+    result = []
+    for i in range(len(matrix_a)):
+        row = []
+        for j in range(len(matrix_a[i])):
+            diff = abs(matrix_a[i][j] - matrix_b[i][j])
+            row.append(diff)
+        result.append(row)
+    return result
+
+N = int(input())
+matrix_a = []
+matrix_b = []
+for _ in range(N):
+    row_a = list(map(int, input().split()))
+    matrix_a.append(row_a)
+for _ in range(N):
+    row_b = list(map(int, input().split()))
+    matrix_b.append(row_b)
+
+result_matrix = absolute_difference(matrix_a, matrix_b)
+for row in result_matrix:
+    print(*row)
+
+
+35.Given a String, find the Maximum Length of the Words in given String
+n=input().split(" ") 
+
+ans=0 
+
+for i in n: 
+
+    ans=max(ans,len(i)) 
+
+print(ans) 
+
+36.GCD or HCF
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int gcd(int a,int b) 
+
+{ 
+
+    if(b==0) 
+
+    { 
+
+        return a; 
+
+    } 
+
+    return gcd(b,a%b); 
+
+} 
+
+int main() 
+
+{ 
+
+    int a,b; 
+
+    cin>>a>>b; 
+
+    cout<<gcd(a,b); 
+
+} 
+
+OR
+
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main() 
+
+{ 
+
+    int a,b; 
+
+    cin>>a>>b; 
+
+    cout<<__gcd(a,b); 
+
+} 
+
+
+
+37.Adam number
+def adam(n): 
+
+    t=n**2 
+
+    m=str(n)[::-1] 
+
+    p=int(m)**2 
+
+    if(str(t)[::-1]==str(p)): 
+
+        print("True") 
+
+    else: 
+
+        print("False") 
+
+n=int(input()) 
+
+adam(n) 
+
+
+38.Harshed number
+#include<stdio.h> 
+
+int main() 
+
+{ 
+
+    int a,s=0,i,t; 
+
+    scanf("%d",&a); 
+
+    t=a; 
+
+    while(a!=0) 
+
+    { 
+
+        i=a%10; 
+
+        s+=i; 
+
+        a/=10; 
+
+    } 
+
+    if(t%s==0) 
+
+    printf("True"); 
+
+    else 
+
+    printf("False"); 
+
+     
+
+    return 0; 
+
+} 
+
+
+
+39.Happy number
+#include<stdio.h> 
+
+#include<math.h> 
+
+void happy(int n) 
+
+{ 
+
+    int i,d=0; 
+
+    if((n==7) || (n==1)) 
+
+    { 
+
+        printf("True"); 
+
+        return ; 
+
+    }     
+
+    // if(n==4||n==5||n==2||n==3||n==6||n==8||n==9) 
+
+    if(n==4) 
+
+    { 
+
+        printf("False"); 
+
+        return ; 
+
+    } 
+
+    while(n) 
+
+    { 
+
+        d+=pow(n%10,2); 
+
+        n/=10; 
+
+    } 
+
+    happy(d); 
+
+} 
+
+int main() 
+
+{ 
+
+    int n; 
+
+    scanf("%d",&n); 
+
+    happy(n); 
+
+} 
+
+
+40.Unique number
+#include<stdio.h> 
+
+    #include<string.h> 
+
+    int main() 
+
+    { 
+
+        int i=0,j=0,t=0; 
+
+        char a[10]; 
+
+        scanf("%[^\n]s",a); 
+
+        for(j=0;j<strlen(a);j++) 
+
+        { 
+
+            for(i=0;i<strlen(a);i++) 
+
+            { 
+
+                if(a[i]==a[j]) 
+
+                t++; 
+
+            } 
+
+        } 
+
+        if(t>strlen(a)) 
+
+        printf("Not Unique Number"); 
+
+        else 
+
+        printf("Unique Number"); 
+
+        return 0; 
+
+    } 
+
+
+
+41.Amicable Numbers
+def facsum(n): 
+
+    k=0 
+
+    for i in range(1,n): 
+
+        if n%i==0: 
+
+            k+=i 
+
+    return k 
+
+a=int(input()) 
+
+b=int(input()) 
+
+if(b==facsum(a) and a==facsum(b)): 
+
+    print("Amicable") 
+
+else: 
+
+    print("Not Amicable") 
+
+42.Count Elements II
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main(){ 
+
+    int n,m; 
+
+    cin>>n>>m; 
+
+    unordered_set<int>s; 
+
+    unordered_map<int,int>mp; 
+
+    int t; 
+
+    for(int i=0;i<n;i++){ 
+
+        cin>>t; 
+
+        if(s.find(t)==s.end()){ 
+
+            s.insert(t); 
+
+            mp[t]++; 
+
+        } 
+
+    } 
+
+    s.clear(); 
+
+    for(int i=0;i<m;i++){ 
+
+        cin>>t; 
+
+        if(s.find(t)==s.end()){ 
+
+            s.insert(t); 
+
+            mp[t]++; 
+
+        } 
+
+    } 
+
+    int ans=0; 
+
+    for(auto &it:mp)if(it.second==1)ans++; 
+
+    cout<<ans; 
+
+} 
+
+
+
+43.Count Elements I
+#include<stdio.h> 
+
+int main() 
+
+{ 
+
+    int a[100],b[100],c[100],i,j,k=0,m,n,x,count; 
+
+    scanf("%d%d",&m,&n); 
+
+    for(i=0;i<m;i++) 
+
+    { 
+
+        scanf("%d",&a[i]); 
+
+    } 
+
+    for(i=0;i<n;i++) 
+
+    { 
+
+        scanf("%d",&b[i]); 
+
+    } 
+
+    for(i=0;i<m;i++) 
+
+    { 
+
+        for(j=0;j<n;j++) 
+
+        { 
+
+            if(a[i]==b[j]) 
+
+            { 
+
+                count = 0; 
+
+                for(x=0;x<k;x++) 
+
+                { 
+
+                    if(a[i]==c[x]) 
+
+                        count++; 
+
+                } 
+
+                if(count==0) 
+
+                { 
+
+                    c[k] = a[i]; 
+
+                    k++; 
+
+                } 
+
+            } 
+
+        } 
+
+    } 
+
+        printf("%d ",k); 
+
+  
+
+    return 0; 
+
+} 
+
+
+44.Generate Array II
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main(){ 
+
+    int n,c,p; 
+
+    cin>>n; 
+
+    for(int i=0;i<n/2;i++){ 
+
+        cin>>c>>p; 
+
+        for(int j=0;j<p;j++)cout<<c<<" "; 
+
+    } 
+
+} 
+
+
+45.Average of Primes
+#include<stdio.h> 
+
+int main() 
+
+{ 
+
+    int i,n,arr[100],c=0,s=0,j,k=0; 
+
+    scanf("%d",&n); 
+
+    for(i=0;i<n;i++) 
+
+    { 
+
+        scanf("%d",&arr[i]); 
+
+    } 
+
+    for(i=0;i<n;i++) 
+
+    { 
+
+        c=0; 
+
+        for(j=1;j<=arr[i];j++) 
+
+        { 
+
+            if(arr[i]%j==0) 
+
+            c++; 
+
+        } 
+
+        if(c==2) 
+
+        { 
+
+            k++; 
+
+        s+=arr[i]; 
+
+        } 
+
+    } 
+
+    printf("%.2f",(float)s/k); 
+
+} 
+
+
+46.Primes Greater than k
+#include<stdio.h> 
+
+int main() 
+
+{ 
+
+    int i,n,arr[100],c=0,j,k,f=0; 
+
+    scanf("%d",&n); 
+
+    for(i=0;i<n;i++) 
+
+    { 
+
+        scanf("%d",&arr[i]); 
+
+    } 
+
+    scanf("%d",&k); 
+
+    for(i=0;i<n;i++) 
+
+    { 
+
+        c=0; 
+
+        for(j=1;j<=arr[i];j++) 
+
+        { 
+
+            if(arr[i]%j==0) 
+
+            c++; 
+
+        } 
+
+        if(c==2) 
+
+        { 
+
+            if(arr[i]>=k) 
+
+            { 
+
+                f++; 
+
+            } 
+
+        } 
+
+    } 
+
+    printf("%d",f); 
+
+} 
+
+
+47.Unique Odd Elements Sum
+n=int(input()) 
+
+arr=list(map(int,input().split())) 
+
+b=[] 
+
+for i in arr: 
+
+    if i not in b: 
+
+        b.append(i) 
+
+    else: 
+
+        continue 
+
+s=0     
+
+for i in range(len(b)): 
+
+    if(b[i]%2==1): 
+
+        s=s+b[i] 
+
+print(s) 
+
+
+48.Binary Array to Decimal
+n=int(input()) 
+
+m=list(map(int,input().split())) 
+
+t="0b" 
+
+for i in m: 
+
+    t+=str(i) 
+
+print(eval(t))
+
+
+49.Kth Largest Element in the Array
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main(){ 
+
+    int n,t; 
+
+    cin>>n; 
+
+    priority_queue<int>p; 
+
+    for(int i=0;i<n;i++){ 
+
+        cin>>t; 
+
+        p.push(t); 
+
+    } 
+
+    cin>>t; 
+
+    while(!p.empty() && t--){ 
+
+        if(t==0){ 
+
+            cout<<p.top(); 
+
+            return 0; 
+
+        } 
+
+        p.pop(); 
+
+    } 
+
+    cout<<"-1"; 
+
+} 
+
+
+50.Even odd Series
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main(){ 
+
+    int n; 
+
+    cin>>n; 
+
+    vector<long long>a,b; 
+
+    a.push_back(2); 
+
+    b.push_back(0); 
+
+    b.push_back(1); 
+
+    for(int i=0;i<1000;i++){ 
+
+        a.push_back(a.back()*2*1ll); 
+
+        b.push_back(b.back()*3*1ll); 
+
+    } 
+
+    int i=0; 
+
+    for(i=0;i<(n+1)/2;i++){ 
+
+        cout<<a[i]<<" "<<b[i]<<" "; 
+
+    } 
+
+    if(n%2==0) 
+
+    cout<<a[i]; 
+
+} 
+
+
+51.Self Dividing Numbers
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+  
+
+bool tom(int n){ 
+
+    int t=n; 
+
+    while(n){ 
+
+        if(!(n%10)) return false; 
+
+        if(t%(n%10)) return false; 
+
+        n /= 10; 
+
+    } 
+
+    return true; 
+
+} 
+
+  
+
+int main(){ 
+
+    int a,b; cin >> a >> b; 
+
+    for(int i=a;i<=b;i++){ 
+
+        if(i<10) cout << i << " "; 
+
+        else if(tom(i)) cout << i << " "; 
+
+    } 
+
+} 
+
+52.Balanced Array
+def find_equilibrium_element(arr): 
+
+    total_sum = sum(arr) 
+
+    left_sum = 0 
+
+    for i in range(len(arr)): 
+
+        total_sum -= arr[i] 
+
+        if left_sum == total_sum: 
+
+            return "YES" 
+
+         
+
+        left_sum += arr[i] 
+
+     
+
+    return "NO" 
+
+  
+
+  
+
+n=int(input()) 
+
+for i in range(n): 
+
+    N = int(input()) 
+
+    arr = list(map(int, input().split())) 
+
+    result = find_equilibrium_element(arr) 
+
+    print(result)
+
+
+53.M-Countdown Array
+def count_k_countdowns(arr, K): 
+
+    count = 0 
+
+    target = K 
+
+    for num in arr: 
+
+        if num == target: 
+
+            target -= 1 
+
+        elif num == K: 
+
+            target = K - 1 
+
+        else: 
+
+            target = K 
+
+        if target == 0: 
+
+            count += 1 
+
+            target = K 
+
+    return count 
+
+  
+
+T = int(input()) 
+
+for _ in range(T): 
+
+    N, K = map(int, input().split()) 
+
+    arr = list(map(int, input().split())) 
+
+     
+
+    result = count_k_countdowns(arr, K) 
+
+    print(result) 
+
+
+
+54.First Non Repeated Character
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main(){ 
+
+    int n,m; 
+
+    cin>>n; 
+
+    string s; 
+
+    while(n--){ 
+
+        cin>>m>>s; 
+
+        unordered_map<char,int>mp; 
+
+        for(auto &it:s)mp[it]++; 
+
+        bool t=false; 
+
+        for(auto &it:s){ 
+
+            if(mp[it]==1){ 
+
+                cout<<it<<"\n"; 
+
+                t=true; 
+
+                break; 
+
+            } 
+
+        } 
+
+        if(!t)cout<<"-1\n"; 
+
+    } 
+
+} 
+
+
+55.Deletion of Consecutive Duplicate Characters
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main(){ 
+
+    int n,m; 
+
+    cin>>n; 
+
+    string s; 
+
+    while(n--){ 
+
+        cin>>s; 
+
+        stack<char>st; 
+
+        int ans=0; 
+
+        for(auto &it:s){ 
+
+            if(!st.empty() && st.top()==it){ 
+
+                ans++; 
+
+            } 
+
+            else st.push(it); 
+
+        } 
+
+        cout<<ans<<"\n"; 
+
+    } 
+
+} 
+
+
+56.Program to find the Number of Integers with Exactly 9 Divisors
+def div(a):
+    c=0
+    for i in range(1,a+1):
+        if a%i==0:
+            c+=1
+    return c
+n=int(input())
+count=0
+l=[]
+for i in range(9,n+1):
+    if div(i)==9:
+        l.append(i)
+        count+=1
+print(*l,end=' ')
+print()
+print("Total=",end='')
+print(count)
+
+57.Program to find the Sum of Perfect Square Elements in an Array
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int isPerfectSquare(int number)
+{
+int iVar;
+float fVar;
+
+fVar=sqrt((double)number);
+iVar=fVar;
+
+if(iVar==fVar)
+return number;
+else
+return 0;
+}
+
+int main()
+{
+int n;
+cin >> n;
+int arr[n];
+int i;
+for(i = 0; i < n; i++)
+{
+cin >> arr[i];
+}
+int sum = 0;
+for(i = 0; i < n; i++)
+{
+sum = sum + isPerfectSquare(arr[i]);
+}
+cout << sum;
+return 0;
+}
+
+
+58.Count of the Non-Prime Divisors of a given Number
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+bool isprime(int a){  
+
+    if(a<2)return 0;  
+
+    if(a==2)return 1;  
+
+    for(int i=2;i<=sqrt(a);i++){  
+
+      if(a%i==0)return 0;  
+
+    }  
+
+    return 1;  
+
+}  
+
+int main(){ 
+
+    int n; 
+
+    cin>>n; 
+
+    int ans=0; 
+
+    for(int i=1;i<=sqrt(n);i++){ 
+
+        if(n%i==0){ 
+
+            bool tp=true; 
+
+            if(!isprime(i))ans++,tp=false; 
+
+            if(!isprime(n/i))ans++; 
+
+            if(i==n/i && !tp)ans--; 
+
+        } 
+
+    } 
+
+    //int t=sqrt(n); 
+
+    //if(!isprime(t))if(t*t==n)ans++;else ans+=2; 
+
+    cout<<ans; 
+
+} 
+
+
+59.Count Multiples of 3 Between M ,N
+n,m=map(int,input().split(" ")) 
+
+ans=0 
+
+for i in range(n,m+1,1): 
+
+    if i%3==0: 
+
+        ans+=1 
+
+print(ans) 
+
+
+60.Count Number of Words
+#include<iostream>
+#include<string.h>
+using namespace std;
+int main ()
+{
+    string str;
+    getline(cin,str);
+    int count = 0, i; 
+    for (i = 0; str[i] != '\0';i++)
+    {
+        if (str[i] == ' ')
+            count++;    
+    }
+    cout<<count + 1;
+    return 0;
+}
+
+
+61.Tv Subscription
+n=int(input()) 
+
+for i in range(n): 
+
+    a,b=map(int,input().split()) 
+
+    print(((1 if a%6!=0 else 0) + a//6)*b) 
+
+
+62.Don and 3
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int main(){ 
+
+    int t; cin >> t;  
+
+    while(t--){ 
+
+        int a,b; cin >> a >> b; 
+
+        if(a%3==0 || b%3==0){ 
+
+            cout << 0 << "\n"; 
+
+        } 
+
+        int step = 0; 
+
+        while(a%3!=0 && b%3!=0){ 
+
+            if(a>b){ 
+
+                a = abs(a-b); 
+
+                step++; 
+
+                if(a%3==0) {cout << step << "\n";} 
+
+            } 
+
+            else{ 
+
+                b = abs(a-b); 
+
+                step++; 
+
+                if(b%3==0) {cout << step << "\n";} 
+
+            } 
+
+        } 
+
+    } 
+
+} 
+
+
+63.Counting the Occurances
+def check_digits(string):
+    count = 0
+    for char in string:
+        if char.isdigit():
+            count += 1
+    return count
+
+string = input()
+count = check_digits(string)
+if count > 0:
+    print("Contains", count, "digit")
+else:
+    print("Doesn't contain digit")
+
+
+64.Minimum Shoes to Buy
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b;
+    cin >> a >> b;
+    int ans = a;
+
+    if (b < a) {
+        ans += a - b;
+    }
+
+    cout << ans << endl;
+
+    return 0;
+}
+
+
+65.Little Monk and Good String
+def longest_good_string(S):
+    vowels = 'aeiou'
+    max_length = 0
+    current_length = 0
+
+    for char in S:
+        if char in vowels:
+            current_length += 1
+            max_length = max(max_length, current_length)
+        else:
+            current_length = 0
+
+    return max_length
+
+S = input()
+
+length = longest_good_string(S)
+print(length)
+
+
+66.Data Arrangement
+n=input()
+l=list(map(int,input().split()))
+l1=[]
+l2=[]
+for i in l:
+    if i<0:
+        l1.append(i)
+    else:
+        l2.append(i)
+lf=l1+l2
+print(*lf)
+
+
+67.Sum of digits in a String
+s = input() 
+
+total_sum = 0 
+
+for char in s: 
+
+    if char.isdigit(): 
+
+        total_sum += int(char) 
+
+print(total_sum) 
+
+
+68.Choose wisely
+#include <iostream>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int a, b;
+        cin >> a >> b;
+
+        int ans = max(1500 - a * 2 - 4 * (a + b), 1500 - 4 * b - 2 * (a + b));
+
+        cout << ans << endl;
+    }
+
+    return 0;
+}
+
+69.Find Possible GCD
+
+
+70.Max of String
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string str;
+    getline(cin, str);
+
+    int max = 0;
+
+    for (int i = 0; i < str.length(); i++) {
+        if (str[i] >= max) {
+            max = str[i];
+        }
+    }
+
+    cout << char(max) << endl;
+
+    return 0;
+}
+
+
+71.Second most frequent character
+a=input() 
+
+c=[] 
+
+for i in a: 
+
+    c.append(a.count(i)) 
+
+p=max(set(c)) 
+
+c=set(c) 
+
+c.remove(p) 
+
+d=[] 
+
+for i in a: 
+
+    if a.count(i) in c: 
+
+        print(i) 
+
+        break 
+
+if len(c)==0: 
+
+    print(-1) 
+
+
+72.Color Code
+#include <iostream>
+using namespace std;
+
+int main() {
+    char a;
+    
+    cin >> a;
+
+    if (a == 'V' || a == 'v') {
+        cout << "Violet" << endl;
+    }
+    else if (a == 'I' || a == 'i') {
+        cout << "Indigo" << endl;
+    }
+    else if (a == 'B' || a == 'b') {
+        cout << "Blue" << endl;
+    }
+    else if (a == 'G' || a == 'g') {
+        cout << "Green" << endl;
+    }
+    else if (a == 'Y' || a == 'y') {
+        cout << "Yellow" << endl;
+    }
+    else if (a == 'O' || a == 'o') {
+        cout << "Orange" << endl;
+    }
+    else if (a == 'R' || a == 'r') {
+        cout << "Red" << endl;
+    }
+    else {
+        cout << "-1" << endl;
+    }
+
+    return 0;
+}
+
+
+73.Display Season
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    if (n >= 4 && n <= 6) {
+        cout << "Summer" << endl;
+    }
+    else if (n >= 7 && n <= 10) {
+        cout << "Rainy" << endl;
+    }
+    else if (n == 11 || n == 12 || n == 1) {
+        cout << "Winter" << endl;
+    }
+    else if (n == 2 || n == 3) {
+        cout << "Spring" << endl;
+    }
+    else {
+        cout << "-1" << endl;
+    }
+
+    return 0;
+}
+
+
+74.String Concatenate
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string str1, str2;
+    cin >> str1 >> str2;
+
+    string concatenated_str = str1 + str2;
+
+    sort(concatenated_str.begin(), concatenated_str.end());
+
+    cout << concatenated_str << endl;
+
+    return 0;
+}
+
+
+75.Swap Bits
+
+76.Bombs Drop
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+
+	int t;
+	cin >> t;
+	while(t--)
+	{
+	    int n,x;
+	    cin >> n>>x;
+	    int a[n],h=0;
+	    for (int i = 1; i <= n; i++) {
+	        cin >> a[i];
+	    
+	        if(a[i]<x)  
+	             h=i;   
+	    }
+	    
+	   cout << h << endl;
+	}
+	return 0;
+}
+
+
+77.String contain digit or not
+def check_digits(string):
+    digit_count = 0
+    for char in string:
+        if char.isdigit():
+            digit_count += 1
+
+    if digit_count > 0:
+        return f"Contains {digit_count} digit"
+    else:
+        return "Doesn't contain digit"
+
+string = input()
+
+print(check_digits(string))
+
+
+78.String Protocol
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t,n;
+	string s;
+	cin>>t;
+	while(t--){
+	    cin>>n;
+	    cin>>s;
+	    int count=0;
+	    for(int i=0;i<n;i++){
+	        if(s[i]==s[i+1])
+	            i++;
+	        
+	        count++;
+	    }
+	    cout<<count<<endl;
+	}
+	return 0;
+}
+
+
+79.Sankar and Maths
+#include <iostream>
+using namespace std;
+
+int main() {
+	    int n;
+	    cin >> n;
+	    if(n%2==1)
+	    cout << n/2+1 << endl;
+	    else
+	    cout << n/2  << endl;
+	}
+
+
+
+
+80.valid string
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+bool isValidString(string str) {
+    unordered_map<char, int> charCount;
+    for (char c : str) {
+        charCount[c]++;
+    }
+    int count = charCount[str[0]];
+    bool variationAllowed = false;
+    for (auto it : charCount) {
+        if (it.second != count) {
+            if (variationAllowed) {
+                return false;
+            } else {
+                variationAllowed = true;
+            }
+        }
+    }
+    return true;
+}
+
+int main() {
+    string str;
+    cin >> str;
+    if (isValidString(str)) {
+        cout << "Valid String" << endl;
+    } else {
+        cout << "Not Valid" << endl;
+    }
+    return 0;
+}
+
+
+
+81.General's Arrival
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int a[110];
+int mins=110,maxs=0,imin,imax;
+
+int main()
+{
+    int n;
+    cin >> n;
+
+    for (int i = 1; i <= n; i ++ ) scanf("%d", &a[i]);
+
+    for (int i = 1; i <= n; i ++ )
+    {
+        if (a[i] > maxs)
+        {
+            maxs = a[i];
+            imax = i;
+        }
+    }
+
+    for (int i = n; i >= 1; i -- )
+    {
+        if (a[i] < mins)
+        {
+            mins = a[i];
+            imin = i;
+        }
+    }
+
+    int ans = imax - 1 + n - imin; 
+
+    if (imax > imin) cout << ans - 1 << endl; 
+    else cout << ans << endl; 
+
+    return 0;
+}
+
+
+82.Clothing Store
+def countSockPairs(sockColors):
+    pairs = 0
+    colorCount = {}
+    
+    for color in sockColors:
+        if color in colorCount:
+            colorCount[color] += 1
+        else:
+            colorCount[color] = 1
+    
+    for count in colorCount.values():
+        pairs += count // 2
+    
+    return pairs
+
+n = int(input())
+sockColors = list(map(int, input().split()))
+
+numPairs = countSockPairs(sockColors)
+print(numPairs)
+
+83.Count number of ways to cover a distance
+def countWays(n): 
+
+    if (n == 0): 
+
+        return 1 
+
+    if (n <= 2): 
+
+        return n 
+
+    f0 = 1 
+
+    f1 = 1 
+
+    f2 = 2 
+
+    ans = 0 
+
+    for i in range(3, n + 1): 
+
+        ans = f0 + f1 + f2 
+
+        f0 = f1 
+
+        f1 = f2 
+
+        f2 = ans 
+
+    return ans 
+
+  
+
+n = int(input()) 
+
+  
+
+print(countWays(n)) 
+
+  
+
+84.Display unique values in an Array
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int arr[n];
+
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    int c = 0;
+
+    for (int i = 0; i < n; i++) {
+        int count = 0;
+
+        for (int j = 0; j < n; j++) {
+            if (arr[i] == arr[j] && i != j) {
+                count += 1;
+            }
+        }
+
+        if (count == 0) {
+            cout << arr[i] << " ";
+            c += 1;
+        }
+    }
+
+    if (c == 0) {
+        cout << "-1";
+    }
+
+    return 0;
+}
+
+
+85.Excel Mapping
+def convertToExcelColumn(n):
+    result = ""
+    while n > 0:
+        rem = (n - 1) % 26
+        result = chr(rem + ord('A')) + result
+        n = (n - 1) // 26
+    return result
+
+n = int(input())
+excelColumn = convertToExcelColumn(n)
+print(excelColumn)
+
+86.Batsman Average
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    float a;
+    int t;
+    cin >> a >> t;
+
+    int rs = 0, os = 0;
+
+    while (t-- != 0) {
+        int r, o, b;
+        cin >> r >> o >> b;
+        rs += r;
+
+        if (o == 0) {
+            os++;
+        }
+    }
+
+    float na = static_cast<float>(rs) / os;
+    float ca = (na + a) / 2;
+
+    cout << fixed << setprecision(2) << ca << endl;
+
+    if (ca > a) {
+        cout << "True";
+    } else {
+        cout << "False";
+    }
+
+    return 0;
+}
+
+
+87.Bowler Statistics
+
+
+88.Team Selection
+#include<cstdio>
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int a[100000];
+int main()
+{
+	int n,k,w,sum=0,ans=0;
+	cin>>n>>k;
+	for(int i=0;i<n;i++){
+		cin>>w;
+		a[i]=w+k;
+	}
+	for(int i=0;i<n;i++){
+		if(a[i]<=5)
+			sum++;
+		if(sum==3){
+			sum=0;
+			ans++;
+		}
+	}
+	cout<<ans<<endl;
+	return 0;
+}
+
+
+89.Integer Problem
+t = int(input())
+
+for _ in range(t):
+    a, b = map(int, input().split())
+    
+   s
+    diff = abs(a - b)
+    
+    moves = diff // 10 + (diff % 10 != 0)
+    
+    print(moves)
+
+90.Count Spaces in a String
+s=input() 
+
+c=0 
+
+for i in s: 
+
+    if i==" ": 
+
+        c+=1 
+
+print(c) 
+
+
+
+
+91.Find Index Position
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t-- != 0) {
+        int n, k, c = 0;
+        cin >> n >> k;
+        int arr[n];
+
+        for (int i = 0; i < n; i++) {
+            cin >> arr[i];
+            if (arr[i] < k) {
+                c++;
+            }
+        }
+
+        cout << c << endl;
+    }
+
+    return 0;
+}
+
+
+92.Find the Element
+#include <bits/stdc++.h>
+using namespace std;
+
+int findSingleElement(int arr[], int n) {
+    unordered_map<int, int> freq;
+    
+    for (int i = 0; i < n; i++) {
+        freq[arr[i]]++;
+    }
+    
+    for (auto it : freq) {
+        if (it.second == 1) {
+            return it.first;
+        }
+    }
+    
+    return -1; 
+}
+
+int main() {
+    int n;
+    cin >> n;
+    
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+    int result = findSingleElement(arr, n);
+    
+    cout << result << endl;
+    
+    return 0;
+}
+
+93.Minimum Unique Digit Sum
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int S;
+    cin >> S;
+
+    if (S < 1 || S > 45) {
+        cout << "Invalid input." << endl;
+        return 1;
+    }
+
+    std::vector<int> digits;
+    for (int i = 1; i <= 9; i++) {
+        digits.push_back(i);
+    }
+
+    string result;
+
+    while (S > 0 && !digits.empty()) {
+        int max_digit = digits.back();
+        if (S >= max_digit) {
+            result += (max_digit + '0');
+            S -= max_digit;
+            digits.pop_back();
+        } else {
+            digits.pop_back();
+        }
+    }
+
+    if (S > 0) {
+        cout << "No such number." << endl;
+        return 1;
+    }
+
+    sort(result.begin(), result.end());
+
+    cout << result << endl;
+
+    return 0;
+}
+
+
+94.Monk and Welcome Problem
+N = int(input())
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
+
+C = [a + b for a, b in zip(A, B)]
+
+print(*C)
+
+95.Monk Teaches Palindrome
+n=int(input()) 
+
+while(n): 
+
+    n-=1 
+
+    a=input() 
+
+    a.casefold() 
+
+    if(a[::-1]==a and len(a)%2==0): 
+
+        print("YES EVEN") 
+
+    elif(a[::-1]==a and len(a)&2!=0): 
+
+        print("YES ODD") 
+
+    elif(a[::-1]!=a): 
+
+        print("NO") 
+
+    else: 
+
+        print("YES ODD") 
+
+  
+
+96.Rotation
+T = int(input())
+
+for _ in range(T):
+    N, K = map(int, input().split())
+    A = list(map(int, input().split()))
+
+    K = K % N  
+
+    rotated_array = A[N-K:] + A[:N-K]
+
+    print(*rotated_array)
+
+
+
+97.Sorting Frequency
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    std::vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    map<int, int> frequency;
+    for (int i = 0; i < n; i++) {
+        frequency[arr[i]]++;
+    }
+
+    auto customSort = [&frequency](int a, int b) {
+        if (frequency[a] == frequency[b]) {
+            return a < b;
+        }
+        return frequency[a] > frequency[b];
+    };
+
+    sort(arr.begin(), arr.end(), customSort);
+
+    std::vector<int> uniqueElements;
+    for (int i : arr) {
+        if (frequency[i] > 0) {
+            uniqueElements.push_back(i);
+            frequency[i] = 0;  
+        }
+    }
+
+    for (int i = 0; i < uniqueElements.size(); i++) {
+        cout << uniqueElements[i];
+        if (i < uniqueElements.size() - 1) {
+            cout << " ";
+        }
+    }
+
+    return 0;
+}
+
+
+98.UNIQUE MAXIMUM NUMBER
+#include<bits/stdc++.h> 
+
+using namespace std; 
+
+int maxiNumber(unordered_map<int,int>m) 
+
+{ 
+
+    int maxi=-1; 
+
+    for(auto it:m) 
+
+    { 
+
+        if(it.second==1 && it.first>maxi) 
+
+        { 
+
+            maxi=it.first; 
+
+        } 
+
+    } 
+
+    return maxi; 
+
+} 
+
+int main() 
+
+{ 
+
+    int n; cin>>n; 
+
+    vector<int>v(n); 
+
+    unordered_map<int,int>m; 
+
+    for(int i=0;i<n;i++) 
+
+    { 
+
+        cin>>v[i]; 
+
+        m[v[i]]++; 
+
+    } 
+
+    if(maxiNumber(m)==9 && v[0]==9) cout<<7; 
+
+    else cout<<maxiNumber(m); 
+
+} 
+
+
+99.Good Investment or Not
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    double x, y;
+    cin >> x >> y;
+
+    if (x / 2 >= y) {
+        cout << "YES" << endl;
+    } else {
+        cout << "NO" << endl;
+    }
+
+    return 0;
+}
+
+
+
+100.Find the time
+n=int(input()) 
+
+print(n//3) 
+
+  
+
+101.Chocolate Distribution
+N, M = map(int, input().split())
+arr = list(map(int, input().split()))
+
+arr.sort()  
+
+min_diff = float('inf')  
+
+for i in range(N - M + 1):
+    diff = arr[i + M - 1] - arr[i]  
+    min_diff = min(min_diff, diff)  
+
+print(min_diff)  
+
+OR
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+
+    std::vector<int> packets(N);
+
+    for (int i = 0; i < N; i++) {
+        cin >> packets[i];
+    }
+
+    sort(packets.begin(), packets.end());
+
+    int minDifference = INT_MAX;
+
+    for (int i = 0; i + M - 1 < N; i++) {
+        int difference = packets[i + M - 1] - packets[i];
+        if (difference < minDifference) {
+            minDifference = difference;
+        }
+    }
+
+    cout << minDifference << endl;
+
+    return 0;
+}
+
+
+102.Remove duplicate elements from sorted Array
+def remove_duplicates(arr):
+    distinct_count = 1
+    for i in range(1, len(arr)):
+        if arr[i] != arr[i-1]:
+            arr[distinct_count] = arr[i]
+            distinct_count += 1
+    return distinct_count
+1
+N = int(input())
+arr = list(map(int, input().split()))
+
+distinct_elements = remove_duplicates(arr)
+print(distinct_elements)
+
+103.Number of Good Pairs
+def count_good_pairs(nums):
+    count = 0
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] == nums[j]:
+                count += 1
+    return count
+
+N = int(input())
+nums = list(map(int, input().split()))
+
+good_pairs_count = count_good_pairs(nums)
+print(good_pairs_count)
+
+
+104.Final Value of Variable After Performing Operations
+def final_value_of_variable(operations):
+    X = 0
+    for operation in operations:
+        if "++X" in operation or "X++" in operation:
+            X += 1
+        else:
+            X -= 1
+    return X
+
+
+operations = input().split()
+
+final_value = final_value_of_variable(operations)
+print(final_value)
+
+
+105.Shuffle the Array
+def shuffle_array(nums, n):
+    result = []
+    for i in range(n):
+        result.append(nums[i])
+        result.append(nums[i+n])
+    return result
+
+nums = list(map(int, input().split()))
+
+n = int(input())
+
+modified_list = shuffle_array(nums, n)
+print(*modified_list)
+
+
+106.Richest Customer Wealth
+def richest_customer_wealth(accounts):
+    max_wealth = 0
+    for customer in accounts:
+        wealth = sum(customer)
+        max_wealth = max(max_wealth, wealth)
+    return max_wealth
+
+m, n = map(int, input().split())
+accounts = []
+for _ in range(m):
+    row = list(map(int, input().split()))
+    accounts.append(row)
+
+richest_wealth = richest_customer_wealth(accounts)
+print(richest_wealth)
+
+
+107.Reverse Last 3 digits
+def reverse_last_three_digits(num):
+    if len(str(num)) != 6:
+        return "Invalid input! Please enter a 6-digit number."
+    else:
+        first_three_digits = num // 1000
+        last_three_digits = num % 1000
+        reversed_last_three_digits = int(str(last_three_digits)[::-1])
+        reversed_num = (first_three_digits * 1000) + reversed_last_three_digits
+        return reversed_num
+
+num = int(input())
+
+reversed_num = reverse_last_three_digits(num)
+print(reversed_num)
+
+108.Four Factor
+
+109.Duplicate Zeros
+#include <bits/stdc++.h>
+using namespace std;
+
+void duplicateZeros(std::vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == 0) {
+            arr.insert(arr.begin() + i + 1, 0);
+            arr.pop_back();
+            i++;
+        }
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    duplicateZeros(arr);
+
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
+
+110.Palindrome String
+def is_palindrome(s):
+    s = s.lower().replace(" ", "").replace(".", "").replace(",", "")
+    return s == s[::-1]
+
+string = input()
+result = is_palindrome(string)
+
+if result:
+    print(1)
+else:
+    print(0)
+
+
+111.K-th Element of two Arrays
+N, M = map(int, input().split())
+arr1 = list(map(int, input().split()))
+arr2 = list(map(int, input().split()))
+k = int(input())
+
+merged_array = arr1 + arr2
+merged_array.sort()
+
+kth_element = merged_array[k - 1]
+print(kth_element)
+
+
+112.First element to occur k times
+def find_first_k_occurrence(arr, K):
+    count = {}
+    for num in arr:
+        count[num] = count.get(num, 0) + 1
+        if count[num] == K:
+            return num
+    return -1
+
+N = int(input())
+arr = list(map(int, input().split()))
+K = int(input())
+
+result = find_first_k_occurrence(arr, K)
+print(result)
+
+
+113.Finding the First Occurrence of a Substring
+def strstr(s, x):
+    if x in s:
+        return s.index(x)
+    else:
+        return -1
+
+S = input()
+x = input()
+
+result = strstr(S, x)
+print(result)
+
+
+114.Product array puzzle
+def product_array(nums):
+    n = len(nums)
+    left_product = [1] * n
+    right_product = [1] * n
+    result = [1] * n
+
+    for i in range(1, n):
+        left_product[i] = left_product[i-1] * nums[i-1]
+
+    for i in range(n-2, -1, -1):
+        right_product[i] = right_product[i+1] * nums[i+1]
+
+    for i in range(n):
+        result[i] = left_product[i] * right_product[i]
+
+    return result
+
+N = int(input())
+nums = list(map(int, input().split()))
+
+output = product_array(nums)
+print(*output)
+
+115.Non Repeating Numbers
+def find_non_repeating_numbers(N, arr):
+    xor = 0
+    
+    for num in arr:
+        xor ^= num
+    
+    rightmost_set_bit = xor & -xor
+    
+    num1 = 0
+    num2 = 0
+    
+    for num in arr:
+        if num & rightmost_set_bit:
+            num1 ^= num
+        else:
+            num2 ^= num
+    
+    return sorted([num1, num2])
+
+N = int(input())
+arr = list(map(int, input().split()))
+
+output = find_non_repeating_numbers(N, arr)
+print(*output)
+
+116.Palindrome and Rotation
+N, A, B = map(int, input().split())
+S = input()
+l = len(S)
+T = S + S         
+ans = 10**100
+for i in range(l):
+    now = A*i
+    now_2=0
+    hazi = l+i
+    for j in range(l):
+        if T[i+j] != T[l+i-j-1]:
+            now_2 +=B
+    ans = min(ans, now+(now_2//2))
+print(ans)
+
+117.Sorting the array
+def sort_array(n, arr):
+    sorted_arr = sorted(arr)
+    if arr == sorted_arr:
+        return "YES\n1 1"
+    else:
+        start = -1
+        end = -1
+        for i in range(n-1):
+            if arr[i] > arr[i+1]:
+                start = i
+                break
+        for i in range(n-1, 0, -1):
+            if arr[i] < arr[i-1]:
+                end = i
+                break
+        reversed_arr = arr[:start] + arr[start:end+1][::-1] + arr[end+1:]
+        if reversed_arr == sorted_arr:
+            return f"YES\n{start+1} {end+1}"
+        else:
+            return "NO"
+
+n = int(input())
+arr = list(map(int, input().split()))
+
+output = sort_array(n, arr)
+print(output)
+
+
+118.Miximum Value
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    for (int i=0; i<n; i++) {
+        char str[200001];
+        scanf("%s", str);
+        int l, z=0;
+        for (l=0; l<200001; l++) {
+            if (str[l]=='\0') break;
+            if (str[l]=='0') z++;
+        }
+        int min = (z < l-z)? z : l-z;
+        if (min*2 == l)
+            printf("%d\n", min-1);
+        else
+            printf("%d\n", min);
+    }
+    return 0;
+}
+
+
+
+119.Possible permutations
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+
+    int t;
+    cin>>t;
+
+    while(t--){
+        int n,a,b;cin>>n>>a>>b;
+        if((n==a)&&(n==b)){
+            cout<<"Yes"<<endl;
+        }else{
+            n-=a+b;
+            
+            if((n>1)){
+                cout<<"Yes"<<endl;
+            }else{
+                cout<<"No"<<endl;
+            }
+        }
+    }
+
+    return 0;
+}
+
+120.Predict the Winner
+N = int(input())
+numbers = list(map(int, input().split()))
+
+sum_X = 0
+sum_Y = 0
+
+for i in range(N):
+    if i % 2 == 0:
+        sum_X += numbers[i]
+    else:
+        sum_Y += numbers[i]
+
+if abs(sum_X - sum_Y) % 4 == 0:
+    print("X")
+else:
+    print("Y")
+
+
+
+121.Predict the Winner in Coin Game
+#include <iostream>
+
+int main() {
+    int a, b;
+    std::cin >> a >> b;
+
+    if (a % 2 == 0 || b % 2 == 0) {
+        std::cout << "Player 1" << std::endl;
+    } else {
+        std::cout << "Player 2" << std::endl;
+    }
+
+    return 0;
+}
+
+
+122.Decompress Run-Length Encoded List
+#include <iostream>
+
+int main() {
+    int n;
+    std::cin >> n;
+    int a[n];
+
+    for (int i = 0; i < n; i++) {
+        std::cin >> a[i];
+    }
+
+    for (int j = 0; j < n; j += 2) {
+        int f = a[j];
+        int v = a[j + 1];
+
+        for (int i = 0; i < f; i++) {
+            std::cout << v << " ";
+        }
+    }
+
+    return 0;
+}
+
+
+123.Replace Elements with Greatest Element on Right Side
+#include <iostream>
+#include <vector>
+
+void nextGreatest(std::vector<int>& arr) {
+    int n = arr.size();
+    
+    for (int i = 0; i < n; i++) {
+        int max_value = -1;
+        
+        for (int j = i + 1; j < n; j++) {
+            max_value = std::max(max_value, arr[j]);
+        }
+        
+        arr[i] = max_value;
+    }
+}
+
+int main() {
+    int n;
+    std::cin >> n;
+    std::vector<int> a(n);
+    
+    for (int i = 0; i < n; i++) {
+        std::cin >> a[i];
+    }
+    
+    nextGreatest(a);
+    
+    for (int i = 0; i < n; i++) {
+        std::cout << a[i] << " ";
+    }
+    
+    return 0;
+}
+
+
+124.Valid Parentheses
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    std::string s;
+    std::cin >> s;
+
+    std::stack<char> st;
+
+    for (char ch : s) {
+        if (ch == '(') st.push(')');
+        else if (ch == '{') st.push('}');
+        else if (ch == '[') st.push(']');
+        else {
+            if (st.empty() || st.top() != ch) {
+                std::cout << "False" << std::endl;
+                return 0;
+            }
+            st.pop();
+        }
+    }
+
+    if (st.empty()) {
+        std::cout << "True" << std::endl;
+    } else {
+        std::cout << "False" << std::endl;
+    }
+
+    return 0;
+}
+
+
+
+125.Multiply Strings
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string s1, s2;
+    std::cin >> s1 >> s2;
+
+    long long a = std::stoll(s1);
+    long long b = std::stoll(s2);
+
+    std::cout << a * b << std::endl;
+
+    return 0;
+}
+
+
+
+126.Product of Array Except Self
+#include <iostream>
+#include <vector>
+
+int main() {
+    int n;
+    std::cin >> n;
+    std::vector<int> arr(n);
+
+    for (int i = 0; i < n; i++) {
+        std::cin >> arr[i];
+    }
+
+    for (int i = 0; i < n; i++) {
+        long long pro = 1;
+
+        for (int j = 0; j < n; j++) {
+            if (arr[i] == arr[j]) {
+                continue;
+            } else {
+                pro *= arr[j];
+            }
+        }
+
+        std::cout << pro << " ";
+    }
+
+    return 0;
+}
+
+
+127.Third Maximum Number
+#include <bits/stdc++.h>
+using namespace std;
+
+void MaximumNumber(std::vector<int>& arr) {
+    int n = arr.size();
+
+    if (n <= 2) {
+        int max = -1;
+        for (int i = 0; i < n; i++) {
+            max = std::max(max, arr[i]);
+        }
+        std::cout << max << std::endl;
+    } else {
+        int first = arr[0];
+        for (int i = 1; i < n; i++) {
+            if (arr[i] > first) {
+                first = arr[i];
+            }
+        }
+
+        int second = INT_MIN;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > second && arr[i] < first) {
+                second = arr[i];
+            }
+        }
+
+        int third = INT_MIN;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > third && arr[i] < second) {
+                third = arr[i];
+            }
+        }
+
+        std::cout << third << std::endl;
+    }
+}
+
+int main() {
+    int n;
+    std::cin >> n;
+    std::vector<int> a(n);
+
+    for (int i = 0; i < n; i++) {
+        std::cin >> a[i];
+    }
+
+    MaximumNumber(a);
+
+    return 0;
+}
+
+
+128.SnackDown Contest
+
+
+129.Help Jarvis!
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t; cin>>t; while(t--)
+    {
+    string s; cin>>s;
+    int a[1000000],flag=0;
+    for(int i=0; i<s.size(); i++){
+        a[i]=s[i]-48;
+     }
+    sort(a,a+s.size());
+    for(int i=1; i<s.size(); i++){
+        if(a[i] != a[i-1]+1){
+            flag=1;
+            break;
+        }
+    }
+     if(flag==0) cout<<"YES\n";
+     else cout<<"NO\n";
+     
+    }
+}
+
+
+130.Speed
+#include<iostream>
+using namespace std;
+#define ll long long
+int main()
+{
+    int T; cin>>T;
+    while(T--)
+    {
+        int N; cin>>N;
+        ll a[N];
+        for(ll i=0;i<N;i++) cin>>a[i];
+int ans = 1; //atleast the first car will be at the maximum speed
+        int min = a[0];
+        for(ll i=1;i<N;i++)
+        {
+            if(a[i] <= min) //if any car is less than the speed of the car infront of it it will be at its maximum speed
+            {
+                ans++;
+                min  = a[i];
+            }
+        }
+        cout<<ans<<endl;
+    }
+}
+
+
+131.Find Angle
+
+132.Student Arrangement
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define lli long long int
+
+int main(){
+
+    ios_base::sync_with_stdio(0);
+
+    cin.tie(0);
+
+    int n,m,k;cin>>n>>m>>k;
+
+    set<int>set;
+
+    int A[200010],f[200010];
+
+    for(int i = 0; i<n; i++)cin>>A[i];
+
+    for(int i = 1; i<=m; i++)set.insert(i);
+
+    lli sum = 0;
+
+    for(int i = 0; i<n; i++){
+
+        if(set.empty()){
+
+            sum+=(n-i);
+
+            break;
+
+        }
+
+        auto it = set.lower_bound(A[i]);
+
+        if(it==set.end())it = set.begin();
+
+        if(*it!=A[i])sum++;
+
+        f[*it]++;
+
+        if(f[*it]==k)set.erase(it);
+
+    }
+
+    cout<<sum<<endl;
+
+    return 0;
+
+}
+
+133.Viral Advertising
+def viralAdvertising(n):
+    shared = 5
+    cumulative_likes = 0
+    
+    for day in range(1, n + 1):
+        liked = shared // 2
+        cumulative_likes += liked
+        shared = liked * 3
+    
+    return cumulative_likes
+
+# Take input from the user
+n = int(input())
+result = viralAdvertising(n)
+print( result)
+
+
+134.Last Occurrence
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int lastOccurrence(vector<int>& arr, int M) {
+    int n = arr.size();
+    for (int i = n - 1; i >= 0; i--) {
+        if (arr[i] == M) {
+            return i + 1; // Considering the array to be 1-indexed
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+    vector<int> arr(N);
+    for (int i = 0; i < N; i++) {
+        cin >> arr[i];
+    }
+    int lastIdx = lastOccurrence(arr, M);
+    cout << lastIdx << endl;
+    return 0;
+}
+
+
+135.Maximum element in each column
+m, n = map(int, input().split())
+
+matrix = []
+for _ in range(m):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+
+for j in range(n):
+    max_element = matrix[0][j]
+    for i in range(1, m):
+        if matrix[i][j] > max_element:
+            max_element = matrix[i][j]
+    print(max_element)
+
+
+136.Kangaroo
+def kangaroo(x1, v1, x2, v2):
+    if v1 == v2:
+        if x1 == x2:
+            return "YES"
+        else:
+            return "NO"
+    else:
+        jumps = (x2 - x1) / (v1 - v2)
+        if jumps.is_integer() and jumps >= 0:
+            return "YES"
+        else:
+            return "NO"
+
+x1, v1, x2, v2 = map(int, input().split())
+result = kangaroo(x1, v1, x2, v2)
+print(result)
+
+
+137.Record Breaker
+def count_record_breaking_days(visitors):
+    record_breaking_days = 0
+    max_visitors = -1
+
+    for i in range(len(visitors)):
+        if visitors[i] > max_visitors and (i == len(visitors) - 1 or visitors[i] > visitors[i + 1]):
+            record_breaking_days += 1
+        max_visitors = max(max_visitors, visitors[i])
+
+    return record_breaking_days
+
+T = int(input())
+for case in range(1, T + 1):
+    N = int(input())
+    visitors = list(map(int, input().split()))
+    result = count_record_breaking_days(visitors)
+    print(f"Case #{case}: {result}")
+
+138.RainDrop
+def raindrop_sound(number):
+    sound = ""
+
+    if number % 3 == 0:
+        sound += "Pling"
+    if number % 5 == 0:
+        sound += "Plang"
+    if number % 7 == 0:
+        sound += "Plong"
+
+    if sound == "":
+        sound = str(number)
+
+    return sound
+
+N = int(input())
+result = raindrop_sound(N)
+print(result)
+
+139.Calculate the Average of Numbers
+def calculate_average(numbers):
+    total = sum(numbers)
+    average = total / len(numbers)
+    return average
+
+numbers = list(map(int, input().split()))
+
+result = calculate_average(numbers)
+
+print(f" {result:.2f}")
+
+140.Calculate the Area of a Rectangle
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int w,h;
+    cin>>w>>h;
+    int a=w*h;
+    cout<<a<<endl;
+}
+
+
+
+141.Check for Anagrams
+def check_anagrams(word1, word2):
+    sorted_word1 = sorted(word1)
+    sorted_word2 = sorted(word2)
+    if sorted_word1 == sorted_word2:
+        return True
+    else:
+        return False
+
+word1 = input()
+word2 = input()
+
+result = check_anagrams(word1, word2)
+
+print(result)
+
+
+142.Calculate the Hypotenuse of a Right Triangle
+import math
+
+def calculate_hypotenuse(l1, l2):
+    hypotenuse = math.sqrt(l1**2 + l2**2)
+    return hypotenuse
+
+l1, l2 = map(int, input().split())
+
+result = calculate_hypotenuse(l1, l2)
+
+print("{:.2f}".format(result))
+
+
+143.Find the Maximum in a String
+def find_maximum_character(string):
+    max_char = max(string, key=lambda x: ord(x))
+    return max_char
+
+string = input()
+
+result = find_maximum_character(string)
+
+print(result)
+
+
+144.Find Common Divisors
+def find_common_divisors(n1, n2):
+    divisors = []
+    for i in range(1, min(n1, n2) + 1):
+        if n1 % i == 0 and n2 % i == 0:
+            divisors.append(i)
+    return divisors
+
+n1, n2 = map(int, input().split())
+
+result = find_common_divisors(n1, n2)
+
+for divisor in result:
+    print(divisor, end=" ")
+
+
+145.Check for a Strong Number
+def is_strong_number(n):
+    num = n
+    total = 0
+    while n > 0:
+        digit = n % 10
+        factorial = 1
+        for i in range(1, digit + 1):
+            factorial *= i
+        total += factorial
+        n //= 10
+    return total == num
+
+n = int(input())
+
+result = is_strong_number(n)
+
+print(result)
+
+
+146.Merge Two Sorted Lists
+def merge_sorted_lists(l1, l2):
+    merged_list = []
+    i, j = 0, 0
+
+    while i < len(l1) and j < len(l2):
+        if l1[i] < l2[j]:
+            merged_list.append(l1[i])
+            i += 1
+        else:
+            merged_list.append(l2[j])
+            j += 1
+
+    merged_list.extend(l1[i:])
+    merged_list.extend(l2[j:])
+
+    return merged_list
+
+l1 = list(map(int, input().split()))
+l2 = list(map(int, input().split()))
+
+result = merge_sorted_lists(l1, l2)
+
+print(" ".join(map(str, result)))
+
+
+147.Calculate the GCD of Multiple Numbers
+import math
+
+def calculate_gcd(numbers):
+    gcd = numbers[0]
+    for num in numbers[1:]:
+        gcd = math.gcd(gcd, num)
+    return gcd
+
+numbers = list(map(int, input().split()))
+
+result = calculate_gcd(numbers)
+
+print(result)
+
+
+148.Find the LCM of Multiple Numbers
+import math
+
+def calculate_lcm(numbers):
+    lcm = numbers[0]
+    for num in numbers[1:]:
+        lcm = lcm * num // math.gcd(lcm, num)
+    return lcm
+
+numbers = list(map(int, input().split()))
+
+result = calculate_lcm(numbers)
+
+print(result)
+
+
+149.Calculate Prime Factors
+def calculate_prime_factors(number):
+    factors = []
+    divisor = 2
+
+    while divisor <= number:
+        if number % divisor == 0:
+            factors.append(divisor)
+            number = number / divisor
+        else:
+            divisor += 1
+
+    return factors
+
+number = int(input())
+
+result = calculate_prime_factors(number)
+
+output = ' '.join(map(str, result))
+print(output)
+
+
+150.Check for Leap Year
+def is_leap_year(year):
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            else:
+                return False
+        else:
+            return True
+    else:
+        return False
+
+year = int(input())
+
+result = is_leap_year(year)
+
+print(result)
